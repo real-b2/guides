@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daily &amp; Guild Tokens guides</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f3fb;--panel:#fff;--ink:#241a3a;--mute:#5d5478;--red:#c62f4a;--green:#1d8a4e;--gold:#a87200;--orange:#c4580a;--violet:#6b3fd0;--blue:#1c6fc4;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#150e28;--panel:#211740;--ink:#f3eeff;--mute:#b7abd6;--red:#ff6b81;--green:#4be08a;--gold:#ffc83d;--orange:#ff9040;--violet:#a98bff;--blue:#5cb4ff}}
+:root[data-theme="dark"]{--bg:#150e28;--panel:#211740;--ink:#f3eeff;--mute:#b7abd6;--red:#ff6b81;--green:#4be08a;--gold:#ffc83d;--orange:#ff9040;--violet:#a98bff;--blue:#5cb4ff}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;line-height:1.5}
+main{max-width:640px;margin:0 auto;padding:32px 16px 48px}
+h1{font-family:'Baloo 2',system-ui,sans-serif;font-weight:800;font-size:clamp(2.2rem,8vw,3.4rem);line-height:1;margin:0;letter-spacing:-.01em}
+.sub{font-family:'Baloo 2',system-ui,sans-serif;font-weight:600;font-size:1.25rem;color:var(--gold);margin:6px 0 28px}
+.row{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;background:var(--panel);border-left:6px solid var(--c);border-radius:6px 18px 18px 6px;padding:16px 18px;margin-bottom:12px}
+.row h2{font-family:'Baloo 2',system-ui,sans-serif;font-weight:800;font-size:1.2rem;line-height:1.15;margin:0 0 4px;color:var(--c)}
+.tag{display:inline-block;font-weight:700;font-size:.8rem;color:var(--c);border:1.5px solid var(--c);border-radius:99px;padding:0 10px;margin-bottom:6px}
+.row p{margin:0;color:var(--mute);font-size:.95rem}
+.big{min-width:118px;text-align:center;border:2px solid var(--c);border-radius:12px;padding:8px 10px}
+.big b{display:block;font-family:'Baloo 2',system-ui,sans-serif;font-weight:800;font-size:1.6rem;line-height:1.05}
+.big span{font-size:.75rem;font-weight:700;color:var(--c)}
+.alt{border-left-width:2px;border-style:dashed;border-left-style:dashed;border:2px dashed var(--violet);border-radius:18px;--c:var(--violet);grid-template-columns:1fr;text-align:center;margin-top:20px}
+.alt h2{font-size:1.7rem;color:var(--ink)}
+.gear{list-style:none;margin:10px 0 0;padding:0;font-size:.9rem;color:var(--mute)}.gear li{padding:4px 0;border-top:1px solid color-mix(in srgb,var(--orange) 30%,transparent)}.gear strong{display:block;color:var(--ink);font-weight:700}
+@media (max-width:480px){.row{grid-template-columns:1fr}.big{justify-self:start}}
+
+.zoom{position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:2px;background:var(--panel);color:var(--ink);border:1.5px solid var(--violet);border-radius:99px;padding:3px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.zoom button{font:700 1.1rem Nunito,system-ui,sans-serif;color:var(--ink);background:none;border:0;border-radius:99px;min-width:40px;height:40px;cursor:pointer}
+.zoom button:hover{background:color-mix(in srgb,var(--violet) 25%,transparent)}
+.zoom button:focus-visible{outline:2px solid var(--violet);outline-offset:1px}
+.zoom .lvl{font-size:.85rem;min-width:56px}
+main{padding-bottom:88px}
+.tot{margin-top:20px;border:2px solid var(--violet);border-radius:18px;background:var(--panel);padding:16px 18px;text-align:center}
+.tot .n{font-family:'Baloo 2',system-ui,sans-serif;font-weight:800;font-size:3rem;line-height:1;color:var(--gold)}
+.tot .l{font-weight:700;color:var(--mute);font-size:.9rem}
+.parts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:12px 0 0;padding:0;list-style:none}
+.parts li{border:1.5px solid var(--c);color:var(--ink);border-radius:12px;padding:4px 10px;font-size:.85rem;font-weight:600}
+.parts b{color:var(--c);font-family:'Baloo 2',system-ui,sans-serif;font-size:1.1rem;margin-right:4px}
+.note{font-weight:700;color:var(--c)}
+h1,.sub{text-align:center}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;justify-content:center;gap:8px;padding:12px 16px;border-bottom:1.5px solid color-mix(in srgb,var(--violet) 35%,transparent)}
+nav.tabs button{font:700 1rem Nunito,system-ui,sans-serif;color:var(--mute);background:none;border:2px solid transparent;border-radius:99px;padding:8px 22px;cursor:pointer}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-color:var(--violet);background:color-mix(in srgb,var(--violet) 18%,transparent)}
+nav.tabs button:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+.panel[hidden]{display:none}
+</style>
+</head>
+<body>
+<nav class="tabs" role="tablist" aria-label="Guide categories">
+  <button role="tab" data-tab="daily" aria-selected="true">Daily</button>
+  <button role="tab" data-tab="guild-tokens" aria-selected="false">Guild Tokens</button>
+</nav>
+<main>
+<div class="panel" id="daily" role="tabpanel">
+<h1>How to spend Dawnium</h1>
+<div class="sub">Daily Efficiency Guide</div>
+<section class="row" style="--c:var(--violet)">
+  <div><span class="tag">Attempts x2</span><h2>Daily Dungeon</h2><p>Maximize your attempts every day by buying the extra 2.</p></div>
+  <div class="big"><b>250</b><span>Total Dawnium</span></div>
+</section>
+<section class="row" style="--c:var(--gold)">
+  <div><span class="tag">2 / 2 / 2 / 2</span><h2>Material Realms</h2><p>Clear all Material Realm attempts to gather more upgrade materials. <span class="note">This split is for F2P players.</span></p></div>
+  <div class="big"><b>480</b><span>Total Dawnium</span></div>
+</section>
+<section class="row" style="--c:var(--green)">
+  <div><span class="tag">Daily donations</span><h2>Guild Donations</h2><p>Support your guild and earn valuable rewards.</p></div>
+  <div class="big"><b>370</b><span>Total Dawnium</span></div>
+</section>
+<section class="row" style="--c:var(--red)">
+  <div><span class="tag">Optional</span><h2>Arena PvP (competition)</h2><p>Three tickets are preferred to stay competitive.</p></div>
+  <div class="big"><b>45</b><span>Total Dawnium (3 tickets)</span></div>
+</section>
+<section class="row" style="--c:var(--blue)">
+  <div><span class="tag">200-300</span><h2>Vault</h2><p>Purchase valuable items and limited resources.</p></div>
+  <div class="big"><b>200-300</b><span>Total Dawnium</span></div>
+</section>
+<section class="tot" style="--c:var(--violet)">
+  <div class="l">Total daily</div><div class="n">1445</div><div class="l">Maximum, with the Vault at 300</div>
+  <ul class="parts">
+    <li style="--c:var(--violet)"><b>250</b>Daily Dungeon</li>
+    <li style="--c:var(--gold)"><b>480</b>Material Realms</li>
+    <li style="--c:var(--green)"><b>370</b>Guild Donations</li>
+    <li style="--c:var(--red)"><b>45</b>Arena PvP (optional)</li>
+    <li style="--c:var(--blue)"><b>200-300</b>Vault</li>
+  </ul>
+</section>
+</div>
+<div class="panel" id="guild-tokens" role="tabpanel" hidden>
+<h1>How to spend Guild Tokens</h1>
+<div class="sub">without going broke</div>
+<section class="row" style="--c:var(--red)">
+  <div><span class="tag">Plan ahead</span><h2>Be cautious with spending, or build a savings plan</h2><p>Buying non-discounted chickens, plants, or sheep drains your tokens fast.</p></div>
+  <div class="big"><b>Full price</b><span>Avoid</span></div>
+</section>
+
+<section class="row" style="--c:var(--green)">
+  <div><span class="tag">Sunday goal</span><h2>Buy discounted</h2><p>Only buy discounted chickens, plants, or sheep. By Sunday, have enough tokens to afford the 4.2K item.</p></div>
+  <div class="big"><b>4.2K</b><span>By Sunday</span></div>
+</section>
+
+<section class="row" style="--c:var(--gold)">
+  <div><span class="tag">Best habit</span><h2>Main-stat Fantamon</h2><p>Always keep something in the habitat for your main-stat Fantamon.</p></div>
+  <div class="big"><b>Always</b><span>Something in habitat</span></div>
+</section>
+
+<section class="row" style="--c:var(--orange)">
+  <div><span class="tag">AFK implements</span><h2>Reach yield tiers fast</h2><p>Higher tiers boost yields, so reach them quickly. All three Solar implements require 480 Breeding EXP.</p>
+  <ul class="gear">
+    <li><strong>Solar Sprayer</strong> Oil Yield +30%, Treats Yield +90%</li>
+    <li><strong>Solar Comb</strong> Wool Yield +30%, Treats Yield +90%</li>
+    <li><strong>Solar Broom</strong> Egg Yield +30%, Treats Yield +90%</li>
+  </ul></div>
+  <div class="big"><b>480</b><span>Breeding EXP each</span></div>
+</section>
+
+<section class="row" style="--c:var(--violet)">
+  <div><span class="tag">Skip this</span><h2>Don't spread out</h2><p>Avoid spreading purchases evenly or saving coins for the reset.</p></div>
+  <div class="big"><b>Focus</b><span>Not an even split</span></div>
+</section>
+
+<section class="row" style="--c:var(--blue)">
+  <div><span class="tag">Good news</span><h2>You have enough tokens</h2><p>You'll always earn enough to buy everything. Just spend wisely.</p></div>
+  <div class="big"><b>Enough</b><span>For everything</span></div>
+</section>
+
+<section class="row alt">
+  <div><span class="tag">Other method (optional)</span><h2>Save 14K tokens</h2><p>Many players save 14K tokens, or however many they end up with. This is one player's approach, so pick what fits you.</p></div>
+</section>
+</div>
+</main>
+<div class="zoom" role="group" aria-label="Zoom">
+  <button id="zo" aria-label="Zoom out">&minus;</button>
+  <button id="zr" class="lvl" aria-label="Reset zoom">100%</button>
+  <button id="zi" aria-label="Zoom in">+</button>
+</div>
+<script>
+(function(){
+  var m=document.querySelector('main'),lvl=document.getElementById('zr'),z=100;
+  try{var v=parseInt(localStorage.getItem('site-zoom'),10);if(v>=40&&v<=160)z=v}catch(e){}
+  function set(n){z=Math.max(40,Math.min(160,n));m.style.zoom=z/100;lvl.textContent=z+'%';try{localStorage.setItem('site-zoom',z)}catch(e){}}
+  document.getElementById('zo').onclick=function(){set(z-10)};
+  document.getElementById('zi').onclick=function(){set(z+10)};
+  lvl.onclick=function(){set(100)};
+  set(z);
+})();
+</script>
+<script>
+(function(){
+  var tabs=document.querySelectorAll('nav.tabs button'),panels=document.querySelectorAll('.panel');
+  function show(id){
+    if(!document.getElementById(id))id='daily';
+    tabs.forEach(function(t){t.setAttribute('aria-selected',t.dataset.tab===id)});
+    panels.forEach(function(p){p.hidden=p.id!==id});
+    try{history.replaceState(null,'','#'+id)}catch(e){}
+    window.scrollTo(0,0);
+  }
+  tabs.forEach(function(t){t.onclick=function(){show(t.dataset.tab)}});
+  show((location.hash||'').slice(1)||'daily');
+})();
+</script>
+</body>
+</html>
