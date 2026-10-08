@@ -123,12 +123,29 @@ nav.tabs button{padding:8px 16px}
 .pair+.pair{margin-top:14px}
 .anec{margin-top:10px!important;padding-top:10px;border-top:1.5px dashed color-mix(in srgb,var(--c) 55%,transparent)}
 .anec strong{color:var(--c)}
-.vid{margin:-2px 0 12px;background:var(--panel);border:2px solid var(--red);border-radius:14px;padding:8px;text-align:center}
-.vid video{display:block;max-width:100%;max-height:72vh;width:auto;height:auto;margin:0 auto;border-radius:8px;background:#000}
-.vid figcaption{margin-top:6px;font-size:.85rem;font-weight:700;color:var(--mute)}
+.clipbtn{margin-top:12px;display:inline-flex;align-items:center;gap:8px;font:700 .95rem Nunito,system-ui,sans-serif;color:var(--ink);background:color-mix(in srgb,var(--c) 18%,transparent);border:2px solid var(--c);border-radius:99px;padding:8px 18px;cursor:pointer}
+.clipbtn span{color:var(--c)}
+.clipbtn:hover{background:color-mix(in srgb,var(--c) 32%,transparent)}
+.clipbtn:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+.vm{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.88);display:grid;place-items:center;padding:16px}
+.vm video{display:block;max-width:100%;max-height:86vh;border-radius:12px;background:#000}
+.vm .x{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));right:12px;width:44px;height:44px;border-radius:50%;border:2px solid #fff;background:rgba(0,0,0,.55);color:#fff;font:700 1.4rem/1 Nunito,system-ui,sans-serif;cursor:pointer}
+.vm .x:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1.5px solid color-mix(in srgb,var(--violet) 35%,transparent)}
+nav.tabs{position:static;border-bottom:0;padding-top:4px}
+.lang{display:flex;justify-content:flex-end;align-items:center;gap:4px;max-width:640px;margin:0 auto;padding:8px 16px 0}
+.lang button{font:700 .78rem Nunito,system-ui,sans-serif;color:var(--mute);background:none;border:1.5px solid transparent;border-radius:99px;padding:3px 12px;cursor:pointer}
+.lang button[aria-pressed="true"]{color:var(--ink);border-color:var(--violet);background:color-mix(in srgb,var(--violet) 18%,transparent)}
+.lang button:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+nav.tabs{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{flex:0 0 auto;white-space:nowrap;padding:8px 14px}
+nav.tabs button:first-child{margin-left:auto}
+nav.tabs button:last-child{margin-right:auto}
 </style>
 </head>
 <body>
+<header class="top"><div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="ru" aria-pressed="false">RU</button></div>
 <nav class="tabs" role="tablist" aria-label="Guide categories">
   <button role="tab" data-tab="daily" aria-selected="true">Daily</button>
   <button role="tab" data-tab="guild-tokens" aria-selected="false">Guild Tokens</button>
@@ -137,7 +154,7 @@ nav.tabs button{padding:8px 16px}
   <button role="tab" data-tab="relics" aria-selected="false">Relics</button>
   <button role="tab" data-tab="treasure-hunt" aria-selected="false">Treasure Hunt</button>
   <button role="tab" data-tab="lucky-wheel" aria-selected="false">Lucky Wheel</button>
-</nav>
+</nav></header>
 <main>
 <div class="panel" id="daily" role="tabpanel">
 <h1>How to spend Dawnium</h1>
@@ -157,10 +174,10 @@ nav.tabs button{padding:8px 16px}
 </section>
 <section class="row" style="--c:var(--red)">
   <div><span class="tag">Optional</span><h2>Arena PvP (competition)</h2><p>Three tickets are preferred to stay competitive.</p>
-  <p class="anec"><strong>Tip:</strong> Buy 2-3 Arena tickets every day. You only need to spend 3 to complete the daily requirement, so there's no reason to spend more. This strategy works best for small spenders and F2P players. To reach this point, you may need to place lower than usual for one season so you can build up tickets.</p></div>
+  <p class="anec"><strong>Tip:</strong> Buy 2-3 Arena tickets every day. You only need to spend 3 to complete the daily requirement, so there's no reason to spend more. This strategy works best for small spenders and F2P players. To reach this point, you may need to place lower than usual for one season so you can build up tickets.</p>
+  <button type="button" class="clipbtn" data-clip="video/arena-tickets.mp4" data-poster="images/arena-video-poster.webp"><span aria-hidden="true">&#9654;</span> Example clip</button></div>
   <div class="big"><b>45</b><span>Total Dawnium (3 tickets)</span></div>
 </section>
-<figure class="vid"><video controls playsinline preload="none" poster="images/arena-video-poster.webp" width="540" height="1170"><source src="video/arena-tickets.mp4" type="video/mp4">Your browser can't play this video.</video><figcaption>Arena ticket strategy video</figcaption></figure>
 <section class="row" style="--c:var(--blue)">
   <div><span class="tag">200-300</span><h2>Vault</h2><p>Purchase valuable items and limited resources.</p></div>
   <div class="big"><b>200-300</b><span>Total Dawnium</span></div>
@@ -397,6 +414,52 @@ nav.tabs button{padding:8px 16px}
     document.body.appendChild(o);
   });
 })();
+</script>
+<script>
+(function(){
+  var last=null;
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('.clipbtn');
+    if(!b)return;
+    last=b;
+    var o=document.createElement('div');o.className='vm';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label','Example clip');
+    var v=document.createElement('video');v.controls=true;v.autoplay=true;v.playsInline=true;v.poster=b.dataset.poster||'';v.src=b.dataset.clip;
+    var x=document.createElement('button');x.type='button';x.className='x';x.setAttribute('aria-label','Close video');x.innerHTML='&times;';
+    function close(){v.pause();o.remove();document.removeEventListener('keydown',key);if(last)last.focus()}
+    function key(ev){if(ev.key==='Escape')close()}
+    x.onclick=close;
+    o.addEventListener('click',function(ev){if(ev.target===o)close()});
+    document.addEventListener('keydown',key);
+    o.appendChild(v);o.appendChild(x);document.body.appendChild(o);x.focus();
+  });
+})();
+</script>
+<script>
+(function(){
+  var RU={"Daily": "Ежедневно", "Guild Tokens": "Токены гильдии", "Resonance": "Резонанс", "Cart": "Тележка", "Relics": "Реликвии", "Treasure Hunt": "Охота за сокровищами", "Lucky Wheel": "Колесо удачи", "How to spend Dawnium": "Как тратить Dawnium", "Daily Efficiency Guide": "Гид по ежедневной эффективности", "Attempts x2": "Попытки x2", "Daily Dungeon": "Ежедневное подземелье (Daily Dungeon)", "Maximize your attempts every day by buying the extra 2.": "Используйте максимум попыток каждый день, докупая дополнительные 2.", "Total Dawnium": "Всего Dawnium", "Material Realms": "Материальные миры (Material Realms)", "Clear all Material Realm attempts to gather more upgrade materials.": "Используйте все попытки в Material Realms, чтобы собрать больше материалов для улучшений.", "This split is for F2P players.": "Это распределение подходит для F2P-игроков.", "Healthy Dawnium supply?": "Достаточно Dawnium?", "Try a 4/4/4/6 split instead. Right now we value Sand, so give it the largest share. If times are tough and you can't manage this consistently, fall back to 4/2/2/6.": "Попробуйте распределение 4/4/4/6. Сейчас мы больше всего ценим Sand, поэтому отдайте ему наибольшую долю. Если времена тяжёлые и вы не можете делать это постоянно, вернитесь к 4/2/2/6.", "Daily donations": "Ежедневные пожертвования", "Guild Donations": "Пожертвования гильдии (Guild Donations)", "Support your guild and earn valuable rewards.": "Поддерживайте свою гильдию и получайте ценные награды.", "F2P players are greatly encouraged to do the first 2 Dawnium donations.": "F2P-игрокам очень рекомендуется делать первые 2 пожертвования Dawnium.", "Optional": "По желанию", "Arena PvP (competition)": "Арена PvP (соревнование)", "Three tickets are preferred to stay competitive.": "Чтобы оставаться конкурентоспособным, лучше использовать три билета.", "Tip:": "Совет:", "Buy 2-3 Arena tickets every day. You only need to spend 3 to complete the daily requirement, so there's no reason to spend more. This strategy works best for small spenders and F2P players. To reach this point, you may need to place lower than usual for one season so you can build up tickets.": "Покупайте 2–3 билета на Арену каждый день. Чтобы выполнить ежедневное задание, достаточно потратить 3, тратить больше нет смысла. Эта стратегия лучше всего подходит игрокам с небольшими тратами и F2P. Чтобы прийти к этому, возможно, придётся один сезон занять место ниже обычного, чтобы накопить билеты.", "Example clip": "Пример видео", "Total Dawnium (3 tickets)": "Всего Dawnium (3 билета)", "Vault": "Хранилище (Vault)", "Purchase valuable items and limited resources.": "Покупайте ценные предметы и ограниченные ресурсы.", "Total daily": "Итого в день", "Maximum, with the Vault at 300": "Максимум, если Vault — 300", "Arena PvP (optional)": "Арена PvP (по желанию)", "How to spend Guild Tokens": "Как тратить Guild Tokens", "without going broke": "и не остаться ни с чем", "Plan ahead": "Планируйте заранее", "Be cautious with spending, or build a savings plan": "Тратьте осторожно или составьте план накоплений", "Buying non-discounted chickens, plants, or sheep drains your tokens fast. It's fine early in the week, though, if you have extra tokens to spare.": "Покупка кур, растений и овец без скидки быстро расходует ваши токены. Но в начале недели это нормально, если у вас есть лишние токены.", "Full price": "Полная цена", "Avoid": "Избегайте", "Sunday goal": "Цель к воскресенью", "Buy discounted": "Покупайте со скидкой", "Only buy discounted chickens, plants, or sheep. By Sunday, have enough tokens to afford the 4.2K item.": "Покупайте кур, растения и овец только со скидкой. К воскресенью накопите достаточно токенов на предмет за 4.2K.", "By Sunday": "К воскресенью", "Best habit": "Лучшая привычка", "Main-stat Fantamon": "Fantamon основной характеристики", "Always keep something in the habitat for your main-stat Fantamon.": "Всегда держите что-нибудь в среде обитания для вашего Fantamon основной характеристики.", "Always": "Всегда", "Something in habitat": "Что-то в среде обитания", "AFK implements": "AFK-инструменты", "Reach yield tiers fast": "Быстро достигайте уровней добычи", "Higher tiers boost yields, so reach them quickly. All three Solar implements require 480 Breeding EXP.": "Более высокие уровни увеличивают добычу, поэтому достигайте их быстрее. Для всех трёх инструментов Solar требуется 480 Breeding EXP.", "Oil Yield +30%, Treats Yield +90%": "Добыча масла +30%, добыча лакомств +90%", "Wool Yield +30%, Treats Yield +90%": "Добыча шерсти +30%, добыча лакомств +90%", "Egg Yield +30%, Treats Yield +90%": "Добыча яиц +30%, добыча лакомств +90%", "Breeding EXP each": "Breeding EXP на каждый", "Skip this": "Пропустите это", "Don't spread out": "Не распыляйтесь", "Avoid spreading purchases evenly or saving coins for the reset.": "Не распределяйте покупки поровну и не копите монеты до сброса.", "Focus": "Фокус", "Not an even split": "Не поровну", "Good news": "Хорошие новости", "You have enough tokens": "Токенов хватает", "You'll always earn enough to buy everything. Just spend wisely.": "Вы всегда будете зарабатывать достаточно, чтобы купить всё. Просто тратьте с умом.", "Enough": "Хватает", "For everything": "На всё", "Other method (optional)": "Другой способ (по желанию)", "Save 14K tokens": "Копите 14K токенов", "Many players save 14K tokens, or however many they end up with. This is one player's approach, so pick what fits you.": "Многие игроки копят 14K токенов или сколько получится. Это подход одного игрока, так что выбирайте то, что подходит вам.", "Fantamon Resonance": "Резонанс Fantamon", "Slot 1 is for power": "Слот 1 — для силы", "Priority 1": "Приоритет 1", "Priority 2": "Приоритет 2", "Slot 1: Main": "Слот 1: Main", "Put your highest-power Fantamon in the Main slot.": "Поставьте Fantamon с наибольшей силой в слот Main.", "Base Boost": "Базовый бонус", "Slots 2-4: Sub": "Слоты 2–4: Sub", "Fill the rest after your Main is set. Each Sub gets half the boost.": "Заполните остальные слоты после выбора Main. Каждый Sub получает половину бонуса.", "Why it matters": "Почему это важно", "Double the boost": "Бонус вдвое больше", "The Main slot gets twice the base boost of a Sub, so your strongest Fantamon belongs there.": "Слот Main получает вдвое больший базовый бонус, чем Sub, поэтому ваш самый сильный Fantamon должен стоять там.", "Main vs. Sub": "Main против Sub", "Keep it fresh": "Следите за актуальностью", "Re-check Slot 1": "Проверяйте Слот 1", "When another Fantamon's power passes your Main, swap it in.": "Когда сила другого Fantamon превысит силу вашего Main, поставьте его на это место.", "Slot 1": "Слот 1", "Highest power": "Наибольшая сила", "Resonance Lv. 143": "Резонанс ур. 143", "Resonance Lv. 133": "Резонанс ур. 133", "power in each slot": "сила в каждом слоте", "100% Base Boost": "100% базовый бонус", "50% Base Boost": "50% базовый бонус", "Both lineups put the strongest Fantamon in Slot 1.": "В обоих составах самый сильный Fantamon стоит в Слоте 1.", "Resource choice": "Выбор ресурсов", "Main Fantamon only": "Только основной Fantamon", "Only choose the resources for your primary Fantamon: Nyxarchon, Aegiswing, or Pandarial.": "Выбирайте ресурсы только для вашего основного Fantamon: Nyxarchon, Aegiswing или Pandarial.", "Primary": "Основной", "Fantamon only": "Только Fantamon", "Cart priority": "Приоритет тележки", "Focus on Wood and Stone": "Сосредоточьтесь на дереве и камне", "Top priority": "Главный приоритет", "Wood and Stone": "Дерево и камень", "Put your Cart upgrades into Wood and Stone first.": "Сначала вкладывайте улучшения Тележки в дерево и камень.", "Wood + Stone": "Дерево + камень", "Highlighted below": "Выделено ниже", "Your Cart": "Ваша Тележка", "Focus: Wood": "Фокус: дерево", "Focus: Stone": "Фокус: камень", "Goal: 70% or higher in every region": "Цель: 70% и выше в каждом регионе", "The goal": "Цель", "Every region at 70% or above": "Каждый регион — 70% или выше", "Bring each kingdom to at least 70% completion.": "Доведите каждое королевство минимум до 70% завершения.", "All regions": "Все регионы", "Regions": "Регионы", "70% or higher": "70% и выше", "Below 70%: keep going": "Ниже 70%: продолжайте", "Relics to equip": "Реликвии для экипировки", "On during dungeons": "Включена в подземельях", "Relic 1": "Реликвия 1", "Relic 2": "Реликвия 2", "Relic 3": "Реликвия 3", "Keep this relic on whenever you run dungeons.": "Держите эту реликвию включённой всякий раз, когда проходите подземелья.", "Always on": "Всегда включена", "Leave this relic on at all times. It affects your cart yield.": "Оставляйте эту реликвию включённой постоянно. Она влияет на добычу вашей тележки.", "Shop tiers 1-5": "Уровни магазина 1–5", "F2P should buy the Tier 5 relic 1 week, skip the next, and so forth in order to maintain the ability to buy a Tier 5 every other week.": "F2P-игрокам стоит покупать реликвию 5-го уровня одну неделю, пропускать следующую и так далее, чтобы сохранять возможность покупать предмет 5-го уровня через неделю.", "Shop Level 1": "Уровень магазина 1", "Shop Level 2": "Уровень магазина 2", "Shop Level 3": "Уровень магазина 3", "Shop Level 4": "Уровень магазина 4", "Shop Level 5": "Уровень магазина 5", "Always buy the relic": "Всегда покупайте реликвию", "Wheels by map": "Колёса по картам", "Map location": "Расположение на карте", "Wheel of Destiny": "Колесо судьбы (Wheel of Destiny)", "Guide categories": "Разделы гида", "Zoom": "Масштаб", "Zoom out": "Уменьшить", "Reset zoom": "Сбросить масштаб", "Zoom in": "Увеличить", "Daily & Guild Tokens guides": "Игровые гиды"};
+  var nodes=[],attrs=[];
+  var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode.nodeName;return(p==='SCRIPT'||p==='STYLE'||!n.nodeValue.trim())?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT}});
+  while(w.nextNode())nodes.push([w.currentNode,w.currentNode.nodeValue]);
+  document.querySelectorAll('[aria-label]').forEach(function(e){attrs.push([e,e.getAttribute('aria-label')])});
+  var origTitle=document.title,btns=document.querySelectorAll('.lang button');
+  function k(s){return s.replace(/\s+/g,' ').trim()}
+  function set(lang,save){
+    var ru=lang==='ru';
+    nodes.forEach(function(p){var n=p[0],o=p[1],t=ru&&RU[k(o)];if(t){var m=o.match(/^(\s*)/)[1],e=o.match(/(\s*)$/)[1];n.nodeValue=m+t+e}else n.nodeValue=o});
+    attrs.forEach(function(p){var e=p[0],o=p[1],t=ru&&(RU[o]||(o.indexOf('Enlarge: ')===0?'Увеличить: '+o.slice(9):''));if(t)e.setAttribute('aria-label',t);else e.setAttribute('aria-label',o)});
+    document.title=ru?(RU[origTitle]||origTitle):origTitle;
+    document.documentElement.lang=ru?'ru':'en';
+    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===lang))});
+    if(save){try{localStorage.setItem('site-lang',lang)}catch(e){}}
+  }
+  btns.forEach(function(b){b.onclick=function(){set(b.dataset.lang,true)}});
+  var l=null;try{l=localStorage.getItem('site-lang')}catch(e){}
+  if(!l)l=((navigator.language||'').toLowerCase().indexOf('ru')===0)?'ru':'en';
+  set(l,false);
+})();
+</script>
+<script>
+document.querySelector('nav.tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b&&b.scrollIntoView)b.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})});
 </script>
 </body>
 </html>
