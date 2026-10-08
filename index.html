@@ -121,6 +121,11 @@ nav.tabs button{padding:8px 16px}
 .lb{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.85);display:grid;place-items:center;padding:16px;cursor:zoom-out}
 .lb img{max-width:100%;max-height:100%;border-radius:12px}
 .pair+.pair{margin-top:14px}
+.anec{margin-top:10px!important;padding-top:10px;border-top:1.5px dashed color-mix(in srgb,var(--c) 55%,transparent)}
+.anec strong{color:var(--c)}
+.vid{margin:-2px 0 12px;background:var(--panel);border:2px solid var(--red);border-radius:14px;padding:8px;text-align:center}
+.vid video{display:block;max-width:100%;max-height:72vh;width:auto;height:auto;margin:0 auto;border-radius:8px;background:#000}
+.vid figcaption{margin-top:6px;font-size:.85rem;font-weight:700;color:var(--mute)}
 </style>
 </head>
 <body>
@@ -142,7 +147,8 @@ nav.tabs button{padding:8px 16px}
   <div class="big"><b>250</b><span>Total Dawnium</span></div>
 </section>
 <section class="row" style="--c:var(--gold)">
-  <div><span class="tag">2 / 2 / 2 / 2</span><h2>Material Realms</h2><p>Clear all Material Realm attempts to gather more upgrade materials. <span class="note">This split is for F2P players.</span></p></div>
+  <div><span class="tag">2 / 2 / 2 / 2</span><h2>Material Realms</h2><p>Clear all Material Realm attempts to gather more upgrade materials. <span class="note">This split is for F2P players.</span></p>
+  <p class="anec"><strong>Healthy Dawnium supply?</strong> Try a 4/4/4/6 split instead. Right now we value Sand, so give it the largest share. If times are tough and you can't manage this consistently, fall back to 4/2/2/6.</p></div>
   <div class="big"><b>480</b><span>Total Dawnium</span></div>
 </section>
 <section class="row" style="--c:var(--green)">
@@ -150,9 +156,11 @@ nav.tabs button{padding:8px 16px}
   <div class="big"><b>70</b><span>Total Dawnium</span></div>
 </section>
 <section class="row" style="--c:var(--red)">
-  <div><span class="tag">Optional</span><h2>Arena PvP (competition)</h2><p>Three tickets are preferred to stay competitive.</p></div>
+  <div><span class="tag">Optional</span><h2>Arena PvP (competition)</h2><p>Three tickets are preferred to stay competitive.</p>
+  <p class="anec"><strong>Tip:</strong> Buy 2-3 Arena tickets every day. You only need to spend 3 to complete the daily requirement, so there's no reason to spend more. This strategy works best for small spenders and F2P players. To reach this point, you may need to place lower than usual for one season so you can build up tickets.</p></div>
   <div class="big"><b>45</b><span>Total Dawnium (3 tickets)</span></div>
 </section>
+<figure class="vid"><video controls playsinline preload="none" poster="images/arena-video-poster.webp" width="540" height="1170"><source src="video/arena-tickets.mp4" type="video/mp4">Your browser can't play this video.</video><figcaption>Arena ticket strategy video</figcaption></figure>
 <section class="row" style="--c:var(--blue)">
   <div><span class="tag">200-300</span><h2>Vault</h2><p>Purchase valuable items and limited resources.</p></div>
   <div class="big"><b>200-300</b><span>Total Dawnium</span></div>
