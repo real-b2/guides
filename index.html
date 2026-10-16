@@ -185,6 +185,28 @@ nav.tabs button:last-child{margin-right:auto}
 .vshop .zb{display:block;width:100%;padding:0;border:2px solid var(--c);border-radius:14px;background:none;cursor:zoom-in;overflow:hidden}
 .vshop img{display:block;width:100%;height:auto}
 .vshop figcaption{margin-top:6px;font-size:.85rem;font-weight:700;color:var(--mute)}
+.scale{position:relative;height:44px;margin:4px 8px 14px}
+.scale .bar{position:absolute;left:0;right:0;top:12px;height:6px;border-radius:99px;background:color-mix(in srgb,var(--violet) 28%,transparent)}
+.scale i{position:absolute;top:8px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--c);border:3px solid var(--bg);box-sizing:border-box}
+.scale .l{position:absolute;top:26px;font-size:.75rem;font-weight:700;color:var(--mute)}
+.scale .a{left:0}.scale .b{right:0}
+.tl{list-style:none;margin:0;padding:0}
+.tli{display:grid;grid-template-columns:50px 18px 1fr;column-gap:8px;align-items:start}
+.tli .d{text-align:right;font-family:'Baloo 2',system-ui,sans-serif;font-weight:800;font-size:.95rem;line-height:1.2;padding-top:12px;color:var(--c)}
+.tli .r{position:relative;align-self:stretch}
+.tli .r::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;margin-left:-1.5px;background:color-mix(in srgb,var(--violet) 35%,transparent)}
+.tli:first-child .r::before{top:18px}
+.tli:last-child .r::before{bottom:auto;height:18px}
+.tli .r::after{content:"";position:absolute;left:50%;top:11px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--c);border:3px solid var(--bg);box-sizing:border-box}
+.tli .card{background:var(--panel);border-left:5px solid var(--c);border-radius:6px 16px 16px 6px;padding:12px 14px;margin-bottom:14px;min-width:0}
+.tli h3{font-family:'Baloo 2',system-ui,sans-serif;font-weight:800;font-size:1.15rem;line-height:1.15;margin:0 0 4px;color:var(--c)}
+.tli .lv{display:inline-block;font-weight:700;font-size:.8rem;color:var(--c);border:1.5px solid var(--c);border-radius:99px;padding:0 10px;margin:0 0 6px}
+.tli p{margin:0 0 6px;color:var(--ink);font-size:.95rem}
+.tli p.nt{color:var(--mute);font-size:.9rem}
+.tli .vc{margin:8px 0 4px;font-size:.75rem;font-weight:700;color:var(--mute)}
+.vals{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+.vals span{text-align:center;padding:4px 0;border-radius:8px;background:color-mix(in srgb,var(--c) 14%,transparent);font-weight:700;font-size:.78rem;color:var(--ink);white-space:nowrap}
+.vals span.na{color:var(--mute);font-weight:600}
 </style>
 </head>
 <body>
@@ -198,6 +220,7 @@ nav.tabs button:last-child{margin-right:auto}
   <button role="tab" data-tab="treasure-hunt" aria-selected="false">Treasure Hunt</button>
   <button role="tab" data-tab="lucky-wheel" aria-selected="false">Lucky Wheel</button>
   <button role="tab" data-tab="tips" aria-selected="false">Tips</button>
+  <button role="tab" data-tab="aethyris" aria-selected="false">Aethyris</button>
 </nav></header>
 <main>
 <div class="panel" id="daily" role="tabpanel">
@@ -461,6 +484,25 @@ nav.tabs button:last-child{margin-right:auto}
 <p class="after">You'll run out of gold quickly if you try to buy everything. If you spend responsibly, you'll watch your rolla grow instead of shrink! And once you know what you'll need for upcoming upgrades, you can do extra refreshes on the shop.</p>
 </section>
 </div>
+<div class="panel" id="aethyris" role="tabpanel" hidden>
+<h1>Aethyris</h1>
+<div class="sub">S3 lasts around 112 days</div>
+<div class="scale" aria-hidden="true"><div class="bar"></div><i style="left:0.89%;--c:var(--blue)"></i><i style="left:12.50%;--c:var(--blue)"></i><i style="left:13.39%;--c:var(--orange)"></i><i style="left:25.00%;--c:var(--blue)"></i><i style="left:27.68%;--c:var(--gold)"></i><i style="left:37.50%;--c:var(--blue)"></i><i style="left:41.07%;--c:var(--violet)"></i><i style="left:50.00%;--c:var(--blue)"></i><i style="left:54.46%;--c:var(--gold)"></i><i style="left:62.50%;--c:var(--blue)"></i><i style="left:75.00%;--c:var(--red)"></i><span class="l a">Day 1</span><span class="l b">Day 112</span></div>
+<ol class="tl">
+<li class="tli" style="--c:var(--blue)"><div class="d">Day 1</div><div class="r"></div><div class="card"><h3>Crystal Spire Tree</h3><span class="lv">Player Lv. 130</span><p class="nt">Server merge: 01+02+03+04+05+06+07+08 | 09+10+11+12+13+14+15+16</p><div class="vc">Values</div><div class="vals"><span class="na">-</span><span>9M</span><span class="na">X</span><span class="na">X</span><span class="na">X</span></div></div></li>
+<li class="tli" style="--c:var(--green)"><div class="d"></div><div class="r"></div><div class="card"><h3>5th class</h3><span class="lv">Player Lv. 136</span><p>Player Lv.136 + Class Lv.180 + 4th Class Lv.40 + Aethyris Five</p><p class="nt">Kingdom unlock: keys x5, drills x2, sea mines x2, cloud key x2, hammer x5</p></div></li>
+<li class="tli" style="--c:var(--blue)"><div class="d">Day 14</div><div class="r"></div><div class="card"><h3>Eternal Garden</h3><span class="lv">Player Lv. 160</span><p class="nt">Player Lv.160 unlock Season Power</p><div class="vc">Values</div><div class="vals"><span>12.5M</span><span>15M</span><span>18M</span><span>28.5M</span><span class="na">X</span></div></div></li>
+<li class="tli" style="--c:var(--orange)"><div class="d">Day 15</div><div class="r"></div><div class="card"><h3>Astral Odyssey</h3><p>Season Map</p></div></li>
+<li class="tli" style="--c:var(--blue)"><div class="d">Day 28</div><div class="r"></div><div class="card"><h3>Riftwatch Fortress</h3><div class="vc">Values</div><div class="vals"><span>20M</span><span>26M</span><span>30M</span><span>46M</span><span class="na">X</span></div></div></li>
+<li class="tli" style="--c:var(--gold)"><div class="d">Day 31</div><div class="r"></div><div class="card"><h3>Starfall Covenant</h3><p>Aethyris second relic Gacha</p></div></li>
+<li class="tli" style="--c:var(--blue)"><div class="d">Day 42</div><div class="r"></div><div class="card"><h3>Court of Purification</h3><div class="vc">Values</div><div class="vals"><span>32.5M</span><span>43M</span><span>50.5M</span><span>75M</span><span class="na">X</span></div></div></li>
+<li class="tli" style="--c:var(--violet)"><div class="d">Day 46</div><div class="r"></div><div class="card"><h3>Prismora</h3><p>Fox Fantamon</p></div></li>
+<li class="tli" style="--c:var(--blue)"><div class="d">Day 56</div><div class="r"></div><div class="card"><h3>Temple of Order</h3><div class="vc">Values</div><div class="vals"><span>55M</span><span>65M</span><span>82M</span><span>115M</span><span class="na">X</span></div></div></li>
+<li class="tli" style="--c:var(--gold)"><div class="d">Day 61</div><div class="r"></div><div class="card"><h3>Relic III</h3><p>Aethyris third relic Gacha</p></div></li>
+<li class="tli" style="--c:var(--blue)"><div class="d">Day 70</div><div class="r"></div><div class="card"><h3>Sunspire</h3><div class="vc">Values</div><div class="vals"><span>84.5M</span><span>100M</span><span>120M</span><span>180M</span><span class="na">X</span></div></div></li>
+<li class="tli" style="--c:var(--red)"><div class="d">Day 84</div><div class="r"></div><div class="card"><h3>Regal Lair</h3><div class="vc">Values</div><div class="vals"><span>125M</span><span>145M</span><span>180M</span><span>250M</span><span>350M</span></div></div></li>
+</ol>
+</div>
 </main>
 <div class="zoom" role="group" aria-label="Zoom">
   <button id="zo" aria-label="Zoom out">&minus;</button>
@@ -530,6 +572,8 @@ nav.tabs button:last-child{margin-right:auto}
   Object.assign(RU,{"What to save": "Что сохранить", "As the end of the season approaches, we should each set realistic goals to prepare for the next one. By saving the right resources now, you'll start S3 with explosive momentum.": "Когда сезон подходит к концу, каждому из нас стоит поставить реалистичные цели и подготовиться к следующему. Если сейчас сохранить нужные ресурсы, вы начнёте S3 с мощным рывком.", "Protect at all costs:": "Беречь любой ценой:", "Sand, Ore, Gold, and Battle Essence.": "Sand, Ore, Gold и Battle Essence.", "Okay to use:": "Можно тратить:", "Fantamon trinkets, for pulls.": "Fantamon trinkets для круток.", "Avoid using:": "Не тратить:", "Stellatie.": "Stellatie.", "Gacha events:": "События с гачей:", "If an event has pull requirements, use affection tokens to meet them.": "Если событие требует определённое количество круток, используйте для этого жетоны привязанности (affection tokens).", "Destiny fruits": "Плоды судьбы (Destiny fruits)", "Destiny fruits are something every player should look forward to! They're a great chance to finish a relic set and secure a nice set bonus.": "Плоды судьбы — то, чего должен ждать каждый игрок! Это отличный шанс собрать комплект реликвий и получить хороший бонус комплекта.", "The game has a pre-determined location for every relic (see the guide below). Once you decide whether to pull for blue or purple relics, just go to that location and use your 10 fruits.": "В игре для каждой реликвии заранее определено место (см. гид ниже). Когда решите, за какими реликвиями охотиться — синими или фиолетовыми, — просто идите в это место и используйте свои 10 плодов.", "Timing:": "Время:", "Save them for events like Bingo, where you benefit slightly more from using them.": "Копите их для событий вроде Bingo, где использовать их чуть выгоднее.", "Be ready for anything:": "Будьте готовы ко всему:", "You could pull almost anything with Destiny fruits. If you plan to use 250-300 fruits, try to have a strong Dawnium reserve of 8,000-10,000.": "С плодами судьбы можно получить практически что угодно. Если планируете потратить 250–300 плодов, постарайтесь иметь солидный запас Dawnium — 8 000–10 000.", "Buy everything:": "Покупайте всё:", "Progression is time-gated, so buying it all speeds things up and gives you a nice discount.": "Прогресс ограничен по времени, поэтому покупка всего ускоряет его и даёт приятную скидку.", "Stay realistic:": "Оставайтесь реалистами:", "Relic drop chances are still quite low, even for blues. Be patient and stick to your goals. Hunting for legendary or mythic relics is not advised.": "Шанс выпадения реликвии всё ещё довольно низкий, даже для синих. Будьте терпеливы и придерживайтесь целей. Охота за легендарными и мифическими реликвиями не рекомендуется.", "Vendor": "Торговец (Vendor)", "This is where you'll spend your gold. Some of you may be struggling to keep up with gold or to afford your next upgrade. Luckily, we have a very simple trick.": "Здесь вы будете тратить своё золото. Некоторым из вас может не хватать золота или сложно накопить на следующее улучшение. К счастью, у нас есть очень простой приём.", "Here's the standard we follow:": "Вот стандарт, которого мы придерживаемся:", "Top row:": "Верхний ряд:", "Always buy it all out. No explanation needed.": "Всегда выкупайте полностью. Объяснения не нужны.", "Everything else:": "Всё остальное:", "Only buy it if it's on sale for 20% or more.": "Покупайте только со скидкой 20% или больше.", "Refreshes:": "Обновления:", "We recommend 3-4 refreshes per day if you want to save rolla and start the next day with more.": "Мы рекомендуем 3–4 обновления в день, если хотите сохранить rolla и начать следующий день с большим запасом.", "You'll run out of gold quickly if you try to buy everything. If you spend responsibly, you'll watch your rolla grow instead of shrink! And once you know what you'll need for upcoming upgrades, you can do extra refreshes on the shop.": "Если пытаться купить всё, золото быстро закончится. Если тратить разумно, ваша rolla будет расти, а не уменьшаться! А когда вы точно знаете, что понадобится для улучшений, можно делать больше обновлений магазина.", "Tips": "Советы", "Mini guides, updated regularly": "Мини-гиды, обновляются регулярно"});
   Object.assign(RU,{"Relic location guide": "Гид по расположению реликвий", "Search for a relic, or pick a map.": "Найдите реликвию или выберите карту.", "Search relics": "Поиск реликвий", "Blue": "Синий", "Purple": "Фиолетовый", "Orange": "Оранжевый", "Locations coming soon.": "Расположения скоро появятся.", "No relics match your search.": "Реликвии не найдены."});
   Object.assign(RU,{"Example: the top row is always bought out.": "Пример: верхний ряд всегда выкупается полностью."});
+  Object.assign(RU,{"Player Lv. 130": "Ур. игрока 130", "Server merge: 01+02+03+04+05+06+07+08 | 09+10+11+12+13+14+15+16": "Слияние серверов: 01+02+03+04+05+06+07+08 | 09+10+11+12+13+14+15+16", "Player Lv. 136": "Ур. игрока 136", "Player Lv.136 + Class Lv.180 + 4th Class Lv.40 + Aethyris Five": "Ур. игрока 136 + ур. класса 180 + ур. 4-го класса 40 + Aethyris Five", "Kingdom unlock: keys x5, drills x2, sea mines x2, cloud key x2, hammer x5": "Открытие королевства: ключи x5, буры x2, морские мины x2, облачный ключ x2, молот x5", "Player Lv. 160": "Ур. игрока 160", "Player Lv.160 unlock Season Power": "Ур. игрока 160 открывает Season Power", "Season Map": "Карта сезона (Season Map)", "Aethyris second relic Gacha": "Gacha второй реликвии Aethyris", "Fox Fantamon": "Fox Fantamon", "Aethyris third relic Gacha": "Gacha третьей реликвии Aethyris", "Day 1": "День 1", "Day 14": "День 14", "Day 15": "День 15", "Day 28": "День 28", "Day 31": "День 31", "Day 42": "День 42", "Day 46": "День 46", "Day 56": "День 56", "Day 61": "День 61", "Day 70": "День 70", "Day 84": "День 84", "Day 112": "День 112", "Values": "Значения", "S3 lasts around 112 days": "S3 длится около 112 дней"});
+  Object.assign(RU,{"5th class":"5-й класс (5th class)"});
   var nodes=[],attrs=[];
   var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode.nodeName;return(p==='SCRIPT'||p==='STYLE'||!n.nodeValue.trim())?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT}});
   while(w.nextNode())nodes.push([w.currentNode,w.currentNode.nodeValue]);
