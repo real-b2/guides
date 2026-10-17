@@ -181,6 +181,22 @@ def main():
     added.sort(key=lambda entry: entry["posted"])
     data.extend(added)
     html = html[: start + len(marker)] + json.dumps(data) + html[end:]
+
+    # Log each new code in the on-page changelog (rendered bilingually).
+    cmarker = '<script id="changelog-data" type="application/json">'
+    cstart = html.find(cmarker)
+    if cstart >= 0:
+        cend = html.find("</script>", cstart)
+        try:
+            log = json.loads(html[cstart + len(cmarker) : cend])
+        except json.JSONDecodeError:
+            log = None
+        if isinstance(log, list):
+            have = {(e.get("date"), e.get("code")) for e in log if "code" in e}
+            for e in added:
+                if (e["posted"], e["code"]) not in have:
+                    log.append({"date": e["posted"], "code": e["code"]})
+            html = html[: cstart + len(cmarker)] + json.dumps(log) + html[cend:]
     with open(INDEX, "w", encoding="utf-8") as fh:
         fh.write(html)
     print(f"Added {len(added)} code(s): " + ", ".join(
