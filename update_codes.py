@@ -109,7 +109,6 @@ def main():
     dashed = re.compile(DASHED_RE)
     keyword = re.compile(KEYWORD_RE)
 
-    found = None  # (message, code), newest message first
     candidates = []  # (priority, message, code), newest message first
     for msg in messages:
         text = message_text(msg)
@@ -125,23 +124,6 @@ def main():
         match = keyword.search(text)
         if match:
             candidates.append((2, msg, match.group(1).upper()))
-    for _prio, msg, code in candidates:
-        if code.strip().upper() in CODE_DENYLIST:
-            print(f"Skipping lookalike {code!r} (denylisted).")
-            continue
-        found = (msg, code)
-        break
-    if not found:
-        print("No code-like string in the last 25 messages. Nothing to do.")
-        return
-
-    msg, code = found
-    author = (msg.get("author") or {}).get("username", "?")
-    snippet = (msg.get("content") or "").replace("\n", " ")[:120]
-    print(f"Matched code {code} in message {msg.get('id')} by {author}: {snippet}")
-    posted = msg["timestamp"][:10]  # YYYY-MM-DD (UTC)
-    expires = parse_expiry(message_text(msg), posted)
-
     with open(INDEX, encoding="utf-8") as fh:
         html = fh.read()
     marker = '<script id="codes-data" type="application/json">'
@@ -151,15 +133,41 @@ def main():
     end = html.find("</script>", start)
     data = json.loads(html[start + len(marker) : end])
     known = {entry["code"].upper() for entry in data}
-    if code.upper() in known:
-        print(f"Code {code} already listed. Nothing to do.")
+
+    added = []
+    seen = set()
+    for _prio, msg, code in candidates:
+        key = code.strip().upper()
+        if key in CODE_DENYLIST:
+            print(f"Skipping lookalike {code!r} (denylisted).")
+            continue
+        if key in known or key in seen:
+            continue
+        seen.add(key)
+        text = message_text(msg)
+        posted = msg["timestamp"][:10]  # YYYY-MM-DD (UTC)
+        expires = parse_expiry(text, posted)
+        author = (msg.get("author") or {}).get("username", "?")
+        snippet = (msg.get("content") or "").replace("\n", " ")[:120]
+        print(f"Matched code {code} in message {msg.get('id')} by {author}: {snippet}")
+        added.append({"code": key, "posted": posted, "expires": expires})
+        if len(added) >= 10:
+            break
+    if not added:
+        if not candidates:
+            print("No code-like string in the last 25 messages. Nothing to do.")
+        else:
+            print("All found codes already listed. Nothing to do.")
         return
 
-    data.append({"code": code, "posted": posted, "expires": expires})
+    added.sort(key=lambda entry: entry["posted"])
+    data.extend(added)
     html = html[: start + len(marker)] + json.dumps(data) + html[end:]
     with open(INDEX, "w", encoding="utf-8") as fh:
         fh.write(html)
-    print(f"Added code {code} (posted {posted}, expires {expires}).")
+    print(f"Added {len(added)} code(s): " + ", ".join(
+        f"{e['code']} (posted {e['posted']}, expires {e['expires']})" for e in added
+    ) + ".")
 
 
 if __name__ == "__main__":
