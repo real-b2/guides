@@ -23,11 +23,18 @@ CHANNEL_ID = "1560857578710507570"  # your server's code channel (see README in 
 INDEX = "index.html"
 DAYS_VALID = 7
 
-# Prefer DASHED codes like ABCD-1234 (typical redemption format)...
-DASHED_RE = os.environ.get(
-    "CODE_REGEX", r"\b([A-Z0-9]{4,}-[A-Z0-9]{3,}(?:-[A-Z0-9]{3,})?)\b"
+# The game's posts look like this:
+#   Gift Code:  HOTPOT
+#   Valid Period: Until October 20, 00:00 (UTC-5)
+# Match that format first, then generic fallbacks. Override with CODE_REGEX
+# (CODE_EXPIRY_REGEX for the expiry line) if the format ever changes.
+CODE_LINE_RE = os.environ.get(
+    "CODE_REGEX", r"(?im)^\s*gift\s*code\s*:\s*`?([A-Za-z0-9][A-Za-z0-9\-_]{2,})`?"
 )
-# ...fall back to "code: XYZ" style.
+EXPIRY_LINE_RE = os.environ.get(
+    "CODE_EXPIRY_REGEX", r"(?im)^\s*valid\s*period\s*:\s*until\s+([A-Za-z]+)\s+(\d{1,2})"
+)
+DASHED_RE = r"\b([A-Z0-9]{4,}-[A-Z0-9]{3,}(?:-[A-Z0-9]{3,})?)\b"
 KEYWORD_RE = r"(?i)(?:redeem|redemption|gift|weekly)\s*code[:\s]*`?([A-Za-z0-9][A-Za-z0-9\-_]{3,})`?"
 
 
@@ -57,6 +64,30 @@ def message_text(msg):
     return "\n".join(parts)
 
 
+def parse_expiry(text, posted):
+    """'Valid Period: Until October 20' -> YYYY-MM-DD (rolls year if needed).
+
+    Falls back to DAYS_VALID days after posting when no expiry line found.
+    """
+    match = re.compile(EXPIRY_LINE_RE).search(text)
+    if match:
+        month = None
+        for fmt in ("%B", "%b"):
+            try:
+                month = datetime.strptime(match.group(1), fmt).month
+                break
+            except ValueError:
+                continue
+        if month:
+            year = int(posted[:4])
+            if month < int(posted[5:7]):  # e.g. posted Dec, expires Jan
+                year += 1
+            return f"{year:04d}-{month:02d}-{int(match.group(2)):02d}"
+    return (
+        datetime.fromisoformat(posted + "T00:00:00+00:00") + timedelta(days=DAYS_VALID)
+    ).date().isoformat()
+
+
 def main():
     try:
         messages = api(f"/channels/{CHANNEL_ID}/messages?limit=25")
@@ -67,28 +98,33 @@ def main():
         print("No messages in channel yet. Nothing to do.")
         return
 
+    code_line = re.compile(CODE_LINE_RE)
     dashed = re.compile(DASHED_RE)
     keyword = re.compile(KEYWORD_RE)
 
-    ranked = []  # (has_code_word, message, code)
-    for msg in messages:  # newest first
+    found = None  # (message, code), newest first
+    for msg in messages:
         text = message_text(msg)
-        low = text.lower()
-        for match in dashed.finditer(text.upper()):
-            ranked.append(("code" in low, msg, match.group(1)))
-        for match in keyword.finditer(text):
-            ranked.append((True, msg, match.group(1).upper()))
-    ranked.sort(key=lambda item: (not item[0],))
-    if not ranked:
+        match = code_line.search(text)
+        if match:
+            found = (msg, match.group(1).upper())
+            break
+        if "code" in text.lower():
+            match = dashed.search(text.upper())
+            if match:
+                found = (msg, match.group(1))
+                break
+        match = keyword.search(text)
+        if match:
+            found = (msg, match.group(1).upper())
+            break
+    if not found:
         print("No code-like string in the last 25 messages. Nothing to do.")
         return
 
-    _near, msg, code = ranked[0]
+    msg, code = found
     posted = msg["timestamp"][:10]  # YYYY-MM-DD (UTC)
-    expires = (
-        datetime.fromisoformat(msg["timestamp"].replace("Z", "+00:00"))
-        + timedelta(days=DAYS_VALID)
-    ).date().isoformat()
+    expires = parse_expiry(message_text(msg), posted)
 
     with open(INDEX, encoding="utf-8") as fh:
         html = fh.read()
