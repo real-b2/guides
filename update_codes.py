@@ -29,8 +29,15 @@ DAYS_VALID = 7
 # Match that format first, then generic fallbacks. Override with CODE_REGEX
 # (CODE_EXPIRY_REGEX for the expiry line) if the format ever changes.
 CODE_LINE_RE = os.environ.get(
-    "CODE_REGEX", r"(?im)^\s*gift\s*code\s*:\s*`?([A-Za-z0-9][A-Za-z0-9\-_]{2,})`?"
+    "CODE_REGEX",
+    r"(?im)^\s*\*{0,2}gift\s*code\s*:\s*\*{0,2}`?([A-Za-z0-9][A-Za-z0-9\-_]{2,})`?\*{0,2}\s*$",
 )
+# Words that look like codes but never are (titles, buttons, URLs, ...).
+CODE_DENYLIST = {
+    "GIFT-CODE", "GIFTCODE", "GIFT CODE", "REWARDS", "REWARD", "REDEEM",
+    "REDEEMED", "WEEKLY", "CODES", "CODE", "GIFT", "VALID", "PERIOD",
+    "UNTIL", "IOS", "CLICK", "HERE", "CLAIM", "EXPIRED",
+}
 EXPIRY_LINE_RE = os.environ.get(
     "CODE_EXPIRY_REGEX", r"(?im)^\s*valid\s*period\s*:\s*until\s+([A-Za-z]+)\s+(\d{1,2})"
 )
@@ -102,27 +109,36 @@ def main():
     dashed = re.compile(DASHED_RE)
     keyword = re.compile(KEYWORD_RE)
 
-    found = None  # (message, code), newest first
+    found = None  # (message, code), newest message first
+    candidates = []  # (priority, message, code), newest message first
     for msg in messages:
         text = message_text(msg)
         match = code_line.search(text)
         if match:
-            found = (msg, match.group(1).upper())
-            break
+            candidates.append((0, msg, match.group(1).upper()))
+            continue
         if "code" in text.lower():
             match = dashed.search(text.upper())
             if match:
-                found = (msg, match.group(1))
-                break
+                candidates.append((1, msg, match.group(1)))
+                continue
         match = keyword.search(text)
         if match:
-            found = (msg, match.group(1).upper())
-            break
+            candidates.append((2, msg, match.group(1).upper()))
+    for _prio, msg, code in candidates:
+        if code.strip().upper() in CODE_DENYLIST:
+            print(f"Skipping lookalike {code!r} (denylisted).")
+            continue
+        found = (msg, code)
+        break
     if not found:
         print("No code-like string in the last 25 messages. Nothing to do.")
         return
 
     msg, code = found
+    author = (msg.get("author") or {}).get("username", "?")
+    snippet = (msg.get("content") or "").replace("\n", " ")[:120]
+    print(f"Matched code {code} in message {msg.get('id')} by {author}: {snippet}")
     posted = msg["timestamp"][:10]  # YYYY-MM-DD (UTC)
     expires = parse_expiry(message_text(msg), posted)
 
