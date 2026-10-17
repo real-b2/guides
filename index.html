@@ -693,7 +693,7 @@ nav.tabs button:last-child{margin-right:auto}
   var last=null;
   document.addEventListener('click',function(e){
     var b=e.target.closest&&e.target.closest('.clipbtn');
-    if(!b)return;
+    if(!b||!b.dataset||!b.dataset.clip)return;
     last=b;
     var o=document.createElement('div');o.className='vm';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label','Example clip');
     var v=document.createElement('video');v.controls=true;v.autoplay=true;v.playsInline=true;v.poster=b.dataset.poster||'';v.src=b.dataset.clip;
