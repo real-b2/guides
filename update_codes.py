@@ -60,7 +60,7 @@ def api(path):
         return json.load(resp)
 
 
-def message_text(msg):
+def _parts(msg):
     parts = [msg.get("content") or ""]
     for emb in msg.get("embeds") or []:
         parts.append(emb.get("title") or "")
@@ -68,7 +68,25 @@ def message_text(msg):
         for f in emb.get("fields") or []:
             parts.append(f.get("name") or "")
             parts.append(f.get("value") or "")
+    return parts
+
+
+def message_text(msg):
+    parts = _parts(msg)
+    # Forwarded messages keep the original inside message_snapshots while
+    # the outer content is empty - include both.
+    for snap in msg.get("message_snapshots") or []:
+        parts.extend(_parts(snap.get("message") or {}))
     return "\n".join(parts)
+
+
+def posted_of(msg):
+    """Original post date - prefers the forwarded snapshot's timestamp."""
+    for snap in msg.get("message_snapshots") or []:
+        ts = (snap.get("message") or {}).get("timestamp")
+        if ts:
+            return ts[:10]
+    return msg["timestamp"][:10]  # YYYY-MM-DD (UTC)
 
 
 def parse_expiry(text, posted):
@@ -145,7 +163,7 @@ def main():
             continue
         seen.add(key)
         text = message_text(msg)
-        posted = msg["timestamp"][:10]  # YYYY-MM-DD (UTC)
+        posted = posted_of(msg)
         expires = parse_expiry(text, posted)
         author = (msg.get("author") or {}).get("username", "?")
         snippet = (msg.get("content") or "").replace("\n", " ")[:120]
