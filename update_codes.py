@@ -166,7 +166,7 @@ def main():
         posted = posted_of(msg)
         expires = parse_expiry(text, posted)
         author = (msg.get("author") or {}).get("username", "?")
-        snippet = (msg.get("content") or "").replace("\n", " ")[:120]
+        snippet = text.replace("\n", " ")[:120]
         print(f"Matched code {code} in message {msg.get('id')} by {author}: {snippet}")
         added.append({"code": key, "posted": posted, "expires": expires})
         if len(added) >= 10:
