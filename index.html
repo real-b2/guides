@@ -1286,14 +1286,15 @@ document.querySelector('nav.tabs').addEventListener('click',function(e){var b=e.
   var ctx=cv.getContext('2d'),stars=[],meteors=[],raf=null,W=0,H=0,nextMeteor=0;
   var DPR=Math.min(2,window.devicePixelRatio||1);
   function on(){return document.documentElement.getAttribute('data-theme')==='midnight'}
-  function seed(){stars=[];var n=Math.round(Math.min(180,Math.max(70,W*H/12000)));for(var i=0;i<n;i++){stars.push({x:Math.random()*W,y:Math.random()*H,r:.4+Math.random()*1.2,p:Math.random()*6.28,s:.5+Math.random()*2.2,g:Math.random()<.18})}}
+  var SC=['#ffffff','#ffffff','#ffffff','#ffdf8a','#cfe4ff','#d9c8ff','#ffd9b0'];
+  function seed(){stars=[];var n=Math.round(Math.min(180,Math.max(70,W*H/12000)));for(var i=0;i<n;i++){var hero=Math.random()<.06;stars.push({x:Math.random()*W,y:Math.random()*H,r:hero?1.6+Math.random()*.6:.4+Math.random()*1.1,p:Math.random()*6.28,s:1+Math.random()*2.4,c:SC[Math.floor(Math.random()*SC.length)]})}}
   function resize(){W=window.innerWidth;H=window.innerHeight;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);seed()}
   function spawn(now){var dir=Math.random()<.5?-1:1;var vx=dir*(2+Math.random()*3.5),vy=3+Math.random()*3;var len=120+Math.random()*160;meteors.push({x:W*(.1+Math.random()*.9),y:-20,vx:vx,vy:vy,len:len,age:0});nextMeteor=now+1500+Math.random()*3500}
   function frame(now){
     if(!on()){raf=null;ctx.clearRect(0,0,W,H);return}
     ctx.clearRect(0,0,W,H);
     var t=now/1000,i,s;
-    for(i=0;i<stars.length;i++){s=stars[i];ctx.globalAlpha=.2+.8*Math.abs(Math.sin(t*s.s+s.p));ctx.fillStyle=s.g?'#ffdf8a':'#ffffff';ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,6.29);ctx.fill()}
+    for(i=0;i<stars.length;i++){s=stars[i];ctx.globalAlpha=.2+.8*Math.abs(Math.sin(t*s.s+s.p));ctx.fillStyle=s.c;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,6.29);ctx.fill()}
     if(now>=nextMeteor)spawn(now);
     for(i=meteors.length-1;i>=0;i--){var m=meteors[i];m.age+=.016;m.x+=m.vx;m.y+=m.vy;
       if(m.age>1.6||m.x<-320||m.x>W+320||m.y>H+320){meteors.splice(i,1);continue}
