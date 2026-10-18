@@ -163,6 +163,8 @@ nav.tabs button:last-child{margin-right:auto}
 .ev-cover img{display:block;width:100%;height:auto}
 .ev-photos{position:absolute;right:8px;bottom:8px;font:700 .8rem Nunito,system-ui,sans-serif;background:rgba(0,0,0,.65);color:#fff;border-radius:99px;padding:2px 12px}
 .ev-cover:focus-visible{outline:2px solid var(--c);outline-offset:2px}
+.ev-gal{display:grid;gap:8px;margin-top:12px}
+.ev-gal img{display:block;width:100%;height:auto;border-radius:14px}
 .evlb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.9);display:grid;place-items:center;padding:16px;cursor:zoom-out}
 .evlb figure{margin:0;max-width:min(920px,100%);max-height:88vh;display:flex;flex-direction:column;gap:8px;cursor:default}
 .evlb img{max-width:100%;max-height:78vh;border-radius:12px;object-fit:contain;background:#000}
@@ -382,6 +384,12 @@ nav.tabs button:last-child{margin-right:auto}
 <figure><button class="zb" type="button" aria-label="Enlarge: Eldritch Tome rewards"><img loading="lazy" decoding="async" src="images/haunted-eldritch-tome.webp" alt="Eldritch Tome rewards" width="720" height="1280"></button><figcaption><strong>Eldritch Tome</strong><span>Pass</span></figcaption></figure>
 </div>
 <figure style="margin:12px 0 0;background:var(--panel);border:2px solid var(--violet);border-radius:14px;padding:8px"><button class="zb" type="button" aria-label="Enlarge: Twilight Castle Home Chroma" style="display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:8px;overflow:hidden"><img loading="lazy" decoding="async" src="images/haunted-twilight-castle.webp" alt="Twilight Castle Home Chroma" width="720" height="1280" style="display:block;width:100%;height:auto"></button><figcaption style="margin-top:6px;text-align:center;font-weight:700"><strong style="display:block;font-family:'Baloo 2',system-ui,sans-serif;font-size:1.1rem;line-height:1.2">Twilight Castle</strong><span style="font-size:.8rem;color:var(--mute)">Home Chroma</span></figcaption></figure>
+<p class="sml" style="margin-top:14px">Pumpkin costume showcase</p>
+<div class="ev-gal">
+<img loading="lazy" decoding="async" src="images/haunted-pumpkin-costumes.webp" alt="Pumpkin cat costume set" width="720" height="405">
+<img loading="lazy" decoding="async" src="images/haunted-costume-demo1.gif" alt="Pumpkin costume try-on preview 1" width="600" height="700">
+<img loading="lazy" decoding="async" src="images/haunted-costume-demo2.gif" alt="Pumpkin costume try-on preview 2" width="600" height="700">
+</div>
 </section>
 <section class="tipc ev" style="--c:var(--blue)" data-start="2026-11-23"><h2>Blacksail Waltz</h2>
 <p class="ev-meta"><span class="ev-dates"></span><span class="ev-status"></span></p>
@@ -734,7 +742,7 @@ nav.tabs button:last-child{margin-right:auto}
   Object.assign(RU,{"Normal": "Обычный", "Hard": "Сложный", "Nightmare": "Кошмар", "Purgatory": "Чистилище", "Abyss": "Бездна"});
   Object.assign(RU,{"Kingdom Unlock": "Открытие королевства", "Keys": "Ключи", "Drills": "Буры", "Sea Mines": "Морские мины", "Cloud Key": "Облачный ключ", "Hammer": "Молот"});
   Object.assign(RU,{"Classes":"Классы"});
-  Object.assign(RU,{"Events":"События","Current":"Текущие","Upcoming":"Будущие","Past":"Прошедшие","Current, upcoming & past":"Текущие, будущие и прошедшие","Events move automatically based on today's date. To add one, copy an event card below and set its start and end dates (YYYY-MM-DD).":"События перемещаются автоматически по дате. Чтобы добавить событие, скопируйте карточку ниже и укажите даты начала и конца (ГГГГ-ММ-ДД).","Bingo Bonanza":"Бинго Бонанза","Use Destiny fruits for extra Bingo points. Save 250-300 fruits and keep 8,000-10,000 Dawnium in reserve.":"Используйте плоды судьбы для доп. очков Бинго. Сохраните 250-300 плодов и держите запас 8 000-10 000 Dawnium.","Starfall Covenant Gacha":"Гача Starfall Covenant","Aethyris second relic Gacha. Save pulls for Day 31 and finish a relic set for the set bonus.":"Вторая гача реликвий Aethyris. Копите крутки к 31-му дню и соберите комплект реликвий для бонуса.","Summer Sprint":"Летний спринт","Example past event. Copy this card to add your own, then change the title, text and dates.":"Пример прошедшего события. Скопируйте карточку, чтобы добавить своё, затем поменяйте название, текст и даты.","Wonder Hot Pot":"Чудо-Хотпот","Wonder Flavors collab event. Cook hotpot together: sign in for free Visages, pull the Stellar Plume Visage, and stock up in the Flavor Shop.":"Коллаб-событие Wonder Flavors. Готовьте хотпот вместе: заходите за бесплатными Visage, выбивайте Visage Stellar Plume и запасайтесь в Flavor Shop.","Sign-In Bonus:":"Бонус за вход:","Sign in 7 days to claim the weapon Visages, Wonder Meatballs & Wonder Konjac, for free.":"Заходите 7 дней, чтобы бесплатно получить оружейные Visage, Wonder Meatballs и Wonder Konjac.","New Visage:":"Новый Visage:","Stellar Plume, with a falling-petal effect. Collab Exclusive gacha: Draw x1 for 1, Draw x10 for 10, guaranteed drop every 10.":"Stellar Plume с эффектом падающих лепестков. Коллаб-гача Exclusive: крутка x1 за 1, x10 за 10, гарант каждые 10.","Flavor Shop:":"Flavor Shop:","Stock up on ingredients and cook hotpot. Free claim plus limited purchases, up to 800.":"Запасайтесь ингредиентами и готовьте хотпот. Бесплатный claim плюс лимитные покупки до 800.","Yum Packs:":"Yum Packs:","Limited-time packs: 780% value for 499 and 370% value for 4999. Limit 1 each.":"Лимитные паки: ценность 780% за 499 и 370% за 4999. Лимит по 1.","Details":"Подробнее","Redemption Codes":"Промокоды","New code every week":"Новый код каждую неделю","Current code":"Текущий код","Copy code":"Скопировать код","Redeem on iOS":"Активировать на iOS","Past codes":"Прошлые коды","Changelog":"Журнал изменений","What's new":"Что нового","Copy selected":"Скопировать выбранное","No active code right now. Check back soon.":"Сейчас нет активного кода. Загляните позже.","Haunted Carnival":"Жуткий карнавал","Halloween carnival event. Sign in for the Mumpkin Fantomon, join the Enigma Ball, wake the Spooky Pumpkin, and grab the werewolf costume and Home Chromas.":"Хэллоуин-карнавал. Заходите за Фантомона Mumpkin, участвуйте в Enigma Ball, разбудите Spooky Pumpkin и забирайте костюм оборотня и Home Chromas.","Carnival Sign-In:":"Карнавал: вход:","14 days. Halloween Weather on day 7, Legendary Fantomon Mumpkin on day 14.":"14 дней. Halloween Weather на 7-й день, легендарный Фантомон Mumpkin на 14-й день.","Spooky Night:":"Жуткая ночь:","Join the Enigma Ball for Tricksy Candy and Firework Shells. Chance at 98-2,888 Dawnium.":"Участвуйте в Enigma Ball ради Tricksy Candy и Firework Shells. Шанс на 98-2 888 Dawnium.","Prank Panic:":"Prank Panic:","Set off fireworks to wake the Spooky Pumpkin, then team up. Clear all challenges: Bond Trinket x17 and Wheel Ticket x16.":"Запускайте фейерверки, чтобы разбудить Spooky Pumpkin, затем сражайтесь командой. За все испытания: Bond Trinket x17 и Wheel Ticket x16.","Candy Craze:":"Candy Craze:","Match pranksters invading Kanstein. Clear all stages: 14 Wheel Tickets.":"Собирайте проказников, вторгшихся в Kanstein. За все уровни: 14 Wheel Tickets.","Phantom Snapshots:":"Phantom Snapshots:","Track down the lurking figures: 12 Wheel Tickets.":"Выследите все скрытые фигуры: 12 Wheel Tickets.","Pumpkin Ghost Hunt:":"Охота на тыквенных призраков:","Pumpkin Ghosts replace Stellar Slimes at double rate. Defeat them for Dawnium and Tricksy Candy.":"Тыквенные призраки заменяют Stellar Slimes с двойным шансом. Побеждайте их ради Dawnium и Tricksy Candy.","Spooky Shop:":"Жуткий магазин:","Werewolf costume plus Gacha Chroma, Wheel Tickets, Bond Sigils and Firework Shells.":"Костюм оборотня, а также Gacha Chroma, Wheel Tickets, Bond Sigils и Firework Shells.","Eldritch Tome:":"Eldritch Tome:","Level the tome for rewards including a free Vendor Booth Chroma. Premium unlock $9.99.":"Прокачивайте том ради наград, включая бесплатную Vendor Booth Chroma. Премиум за $9.99.","Twilight Castle:":"Twilight Castle:","Blacksail Waltz":"Вальс Чёрного паруса","Limited-time pirate cosmetic set, available for purchase. Two full outfits plus matching hats, weapons and accessories.":"Лимитный пиратский косметический сет, доступен для покупки. Два полных образа плюс шляпы, оружие и аксессуары.","Captain's look:":"Образ капитана:","Tricorn with gold star, corset dress, spiked morningstar mace and flintlock.":"Треуголка с золотой звездой, корсетное платье, шипастая булава и пистолет.","Swordsman's look:":"Образ мечника:","Long pirate coat with gold trim, cutlass, leather gear and boots.":"Длинный пиратский камзол с золотой отделкой, абордажная сабля, кожаное снаряжение и сапоги.","Extras:":"Дополнительно:","Compass, treasure map, ship's wheel, hook and pistol pieces, mix and match.":"Компас, карта сокровищ, штурвал, крюк и детали пистолета — комбинируйте как хотите.","Halloween Home Chroma set. Free Interior Decor in the first reward tier.":"Хэллоуинский набор Home Chroma. Бесплатный Interior Decor в первом тире наград."});
+  Object.assign(RU,{"Events":"События","Current":"Текущие","Upcoming":"Будущие","Past":"Прошедшие","Current, upcoming & past":"Текущие, будущие и прошедшие","Events move automatically based on today's date. To add one, copy an event card below and set its start and end dates (YYYY-MM-DD).":"События перемещаются автоматически по дате. Чтобы добавить событие, скопируйте карточку ниже и укажите даты начала и конца (ГГГГ-ММ-ДД).","Bingo Bonanza":"Бинго Бонанза","Use Destiny fruits for extra Bingo points. Save 250-300 fruits and keep 8,000-10,000 Dawnium in reserve.":"Используйте плоды судьбы для доп. очков Бинго. Сохраните 250-300 плодов и держите запас 8 000-10 000 Dawnium.","Starfall Covenant Gacha":"Гача Starfall Covenant","Aethyris second relic Gacha. Save pulls for Day 31 and finish a relic set for the set bonus.":"Вторая гача реликвий Aethyris. Копите крутки к 31-му дню и соберите комплект реликвий для бонуса.","Summer Sprint":"Летний спринт","Example past event. Copy this card to add your own, then change the title, text and dates.":"Пример прошедшего события. Скопируйте карточку, чтобы добавить своё, затем поменяйте название, текст и даты.","Wonder Hot Pot":"Чудо-Хотпот","Wonder Flavors collab event. Cook hotpot together: sign in for free Visages, pull the Stellar Plume Visage, and stock up in the Flavor Shop.":"Коллаб-событие Wonder Flavors. Готовьте хотпот вместе: заходите за бесплатными Visage, выбивайте Visage Stellar Plume и запасайтесь в Flavor Shop.","Sign-In Bonus:":"Бонус за вход:","Sign in 7 days to claim the weapon Visages, Wonder Meatballs & Wonder Konjac, for free.":"Заходите 7 дней, чтобы бесплатно получить оружейные Visage, Wonder Meatballs и Wonder Konjac.","New Visage:":"Новый Visage:","Stellar Plume, with a falling-petal effect. Collab Exclusive gacha: Draw x1 for 1, Draw x10 for 10, guaranteed drop every 10.":"Stellar Plume с эффектом падающих лепестков. Коллаб-гача Exclusive: крутка x1 за 1, x10 за 10, гарант каждые 10.","Flavor Shop:":"Flavor Shop:","Stock up on ingredients and cook hotpot. Free claim plus limited purchases, up to 800.":"Запасайтесь ингредиентами и готовьте хотпот. Бесплатный claim плюс лимитные покупки до 800.","Yum Packs:":"Yum Packs:","Limited-time packs: 780% value for 499 and 370% value for 4999. Limit 1 each.":"Лимитные паки: ценность 780% за 499 и 370% за 4999. Лимит по 1.","Details":"Подробнее","Redemption Codes":"Промокоды","New code every week":"Новый код каждую неделю","Current code":"Текущий код","Copy code":"Скопировать код","Redeem on iOS":"Активировать на iOS","Past codes":"Прошлые коды","Changelog":"Журнал изменений","What's new":"Что нового","Copy selected":"Скопировать выбранное","No active code right now. Check back soon.":"Сейчас нет активного кода. Загляните позже.","Haunted Carnival":"Жуткий карнавал","Halloween carnival event. Sign in for the Mumpkin Fantomon, join the Enigma Ball, wake the Spooky Pumpkin, and grab the werewolf costume and Home Chromas.":"Хэллоуин-карнавал. Заходите за Фантомона Mumpkin, участвуйте в Enigma Ball, разбудите Spooky Pumpkin и забирайте костюм оборотня и Home Chromas.","Carnival Sign-In:":"Карнавал: вход:","14 days. Halloween Weather on day 7, Legendary Fantomon Mumpkin on day 14.":"14 дней. Halloween Weather на 7-й день, легендарный Фантомон Mumpkin на 14-й день.","Spooky Night:":"Жуткая ночь:","Join the Enigma Ball for Tricksy Candy and Firework Shells. Chance at 98-2,888 Dawnium.":"Участвуйте в Enigma Ball ради Tricksy Candy и Firework Shells. Шанс на 98-2 888 Dawnium.","Prank Panic:":"Prank Panic:","Set off fireworks to wake the Spooky Pumpkin, then team up. Clear all challenges: Bond Trinket x17 and Wheel Ticket x16.":"Запускайте фейерверки, чтобы разбудить Spooky Pumpkin, затем сражайтесь командой. За все испытания: Bond Trinket x17 и Wheel Ticket x16.","Candy Craze:":"Candy Craze:","Match pranksters invading Kanstein. Clear all stages: 14 Wheel Tickets.":"Собирайте проказников, вторгшихся в Kanstein. За все уровни: 14 Wheel Tickets.","Phantom Snapshots:":"Phantom Snapshots:","Track down the lurking figures: 12 Wheel Tickets.":"Выследите все скрытые фигуры: 12 Wheel Tickets.","Pumpkin Ghost Hunt:":"Охота на тыквенных призраков:","Pumpkin Ghosts replace Stellar Slimes at double rate. Defeat them for Dawnium and Tricksy Candy.":"Тыквенные призраки заменяют Stellar Slimes с двойным шансом. Побеждайте их ради Dawnium и Tricksy Candy.","Spooky Shop:":"Жуткий магазин:","Pumpkin costume showcase":"Витрина тыквенных костюмов","Werewolf costume plus Gacha Chroma, Wheel Tickets, Bond Sigils and Firework Shells.":"Костюм оборотня, а также Gacha Chroma, Wheel Tickets, Bond Sigils и Firework Shells.","Eldritch Tome:":"Eldritch Tome:","Level the tome for rewards including a free Vendor Booth Chroma. Premium unlock $9.99.":"Прокачивайте том ради наград, включая бесплатную Vendor Booth Chroma. Премиум за $9.99.","Twilight Castle:":"Twilight Castle:","Blacksail Waltz":"Вальс Чёрного паруса","Limited-time pirate cosmetic set, available for purchase. Two full outfits plus matching hats, weapons and accessories.":"Лимитный пиратский косметический сет, доступен для покупки. Два полных образа плюс шляпы, оружие и аксессуары.","Captain's look:":"Образ капитана:","Tricorn with gold star, corset dress, spiked morningstar mace and flintlock.":"Треуголка с золотой звездой, корсетное платье, шипастая булава и пистолет.","Swordsman's look:":"Образ мечника:","Long pirate coat with gold trim, cutlass, leather gear and boots.":"Длинный пиратский камзол с золотой отделкой, абордажная сабля, кожаное снаряжение и сапоги.","Extras:":"Дополнительно:","Compass, treasure map, ship's wheel, hook and pistol pieces, mix and match.":"Компас, карта сокровищ, штурвал, крюк и детали пистолета — комбинируйте как хотите.","Halloween Home Chroma set. Free Interior Decor in the first reward tier.":"Хэллоуинский набор Home Chroma. Бесплатный Interior Decor в первом тире наград."});
   var nodes=[],attrs=[];
   var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode.nodeName;return(p==='SCRIPT'||p==='STYLE'||!n.nodeValue.trim())?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT}});
   while(w.nextNode())nodes.push([w.currentNode,w.currentNode.nodeValue]);
@@ -896,35 +904,47 @@ document.querySelector('nav.tabs').addEventListener('click',function(e){var b=e.
     lb.querySelector('.evlb-x').focus();
   }
   panel.querySelectorAll('.ev').forEach(function(card){
-    var imgs=Array.prototype.slice.call(card.querySelectorAll('img'));
-    if(!imgs.length)return;
-    var list=imgs.map(function(im){return{src:im.getAttribute('src'),alt:im.getAttribute('alt')||''}});
-    imgs.forEach(function(im){
-      var pair=im.closest('.pair');
-      if(pair){pair.style.display='none';return}
-      var fig=im.closest('figure');
-      if(fig){fig.style.display='none';return}
-      im.style.display='none';
-    });
     var titleEl=card.querySelector('h2'),title=titleEl?titleEl.textContent:'';
-    var cover=document.createElement('button');
-    cover.type='button';cover.className='ev-cover';
-    var ci=document.createElement('img');
-    ci.loading='lazy';ci.decoding='async';ci.src=list[0].src;ci.alt=list[0].alt;
-    var badge=document.createElement('span');badge.className='ev-photos';
-    cover.appendChild(ci);cover.appendChild(badge);
-    function words(){
-      var ru=document.documentElement.lang==='ru',n=list.length;
-      badge.textContent=ru?(n+' фото'):(n+(n===1?' photo':' photos'));
-      cover.setAttribute('aria-label',(ru?'Открыть галерею: ':'Open photo gallery: ')+title);
+    function makeCover(list,afterNode,beforeNode){
+      if(!list.length)return;
+      var cover=document.createElement('button');
+      cover.type='button';cover.className='ev-cover';
+      var ci=document.createElement('img');
+      ci.loading='lazy';ci.decoding='async';ci.src=list[0].src;ci.alt=list[0].alt;
+      var badge=document.createElement('span');badge.className='ev-photos';
+      cover.appendChild(ci);cover.appendChild(badge);
+      function words(){
+        var ru=document.documentElement.lang==='ru',n=list.length;
+        badge.textContent=ru?(n+' фото'):(n+(n===1?' photo':' photos'));
+        cover.setAttribute('aria-label',(ru?'Открыть галерею: ':'Open photo gallery: ')+title);
+      }
+      words();
+      new MutationObserver(words).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+      if(afterNode){afterNode.after(cover)}else if(beforeNode){beforeNode.before(cover)}
+      cover.addEventListener('click',function(){open(list,0,cover)});
     }
-    words();
-    new MutationObserver(words).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
-    var anchor=card.querySelector('.ev-meta');
-    var intro=anchor&&anchor.nextElementSibling;
-    anchor=(intro&&intro.tagName==='P')?intro:anchor;
-    anchor.after(cover);
-    cover.addEventListener('click',function(){open(list,0,cover)});
+    var imgs=Array.prototype.slice.call(card.querySelectorAll('img')).filter(function(im){return !im.closest('.ev-gal')});
+    if(imgs.length){
+      var list=imgs.map(function(im){return{src:im.getAttribute('src'),alt:im.getAttribute('alt')||''}});
+      imgs.forEach(function(im){
+        var pair=im.closest('.pair');
+        if(pair){pair.style.display='none';return}
+        var fig=im.closest('figure');
+        if(fig){fig.style.display='none';return}
+        im.style.display='none';
+      });
+      var anchor=card.querySelector('.ev-meta');
+      var intro=anchor&&anchor.nextElementSibling;
+      anchor=(intro&&intro.tagName==='P')?intro:anchor;
+      makeCover(list,anchor,null);
+    }
+    Array.prototype.forEach.call(card.querySelectorAll('.ev-gal'),function(gal){
+      var gimgs=Array.prototype.slice.call(gal.querySelectorAll('img'));
+      if(!gimgs.length)return;
+      var glist=gimgs.map(function(im){return{src:im.getAttribute('src'),alt:im.getAttribute('alt')||''}});
+      gal.style.display='none';
+      makeCover(glist,null,gal);
+    });
   });
 })();
 </script>
