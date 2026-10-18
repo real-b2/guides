@@ -199,6 +199,17 @@ nav.tabs button:last-child{margin-right:auto}
 .log-check input:checked{background:color-mix(in srgb,var(--c) 25%,transparent);border-color:var(--c);box-shadow:0 0 10px color-mix(in srgb,var(--c) 55%,transparent)}
 .log-check input:checked::after{content:"✓";color:var(--gold);font:800 14px/1 'Baloo 2',system-ui,sans-serif}
 .log-check input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.mapview{position:relative;overflow:hidden;border:2px solid var(--violet);border-radius:18px;background:#0a0a14;touch-action:none;aspect-ratio:4704/3856;margin-top:20px}
+.mapview img{position:absolute;left:0;top:0;width:100%;height:100%;user-select:none;-webkit-user-drag:none;cursor:grab;transform-origin:0 0}
+.mapctl{position:absolute;right:8px;bottom:8px;display:flex;gap:6px}
+.mapctl button{width:40px;height:40px;border-radius:50%;border:2px solid var(--violet);background:var(--panel);color:var(--ink);font:800 1.2rem Nunito,system-ui,sans-serif;cursor:pointer}
+.mapctl button:hover{background:color-mix(in srgb,var(--violet) 25%,transparent)}
+.mbar{height:12px;border-radius:99px;background:color-mix(in srgb,var(--mute) 20%,transparent);margin:12px 0 4px;overflow:hidden}
+.mbar i{display:block;height:100%;width:0;border-radius:99px;background:var(--gold);transition:width .3s}
+.mrow{display:flex;gap:10px;align-items:center;padding:6px 8px;border-radius:10px;cursor:pointer;font-weight:600}
+.mrow:hover{background:color-mix(in srgb,var(--violet) 12%,transparent)}
+.mrow .mname{flex:1}
+.mrow.done .mname{color:var(--mute);text-decoration:line-through}
 .rg2{margin-top:18px;padding-top:14px;border-top:1.5px dashed color-mix(in srgb,var(--c) 55%,transparent)}
 .rg2 [hidden]{display:none!important}
 .rg2 h3{font-family:'Baloo 2',system-ui,sans-serif;font-weight:800;font-size:1.2rem;margin:0 0 4px;color:var(--ink)}
@@ -287,6 +298,7 @@ nav.tabs button:last-child{margin-right:auto}
   <button role="tab" data-tab="lucky-wheel" aria-selected="false">Lucky Wheel</button>
   <button role="tab" data-tab="tips" aria-selected="false">Tips</button>
   <button role="tab" data-tab="aethyris" aria-selected="false">Aethyris</button>
+  <button role="tab" data-tab="map" aria-selected="false">Map</button>
   <button role="tab" data-tab="changelog" aria-selected="false">Changelog</button>
 </nav></header>
 <main>
@@ -660,6 +672,30 @@ nav.tabs button:last-child{margin-right:auto}
 <li class="tli" style="--c:var(--red)"><div class="d">Day 84</div><div class="r"></div><div class="card"><h3>Regal Lair</h3><div class="vals"><span class="d1"><em>Normal</em>125M</span><span class="d2"><em>Hard</em>145M</span><span class="d3"><em>Nightmare</em>180M</span><span class="d4"><em>Purgatory</em>250M</span><span class="d5"><em>Abyss</em>350M</span></div></div></li>
 </ol>
 </div>
+<div class="panel" id="map" role="tabpanel" hidden>
+<h1>World Map</h1>
+<div class="sub">Aethyris · all regions</div>
+<div class="mapview" id="mapview">
+<img id="mapimg" src="images/map-aethyris.png" alt="Aethyris world map" draggable="false">
+<div class="mapctl" role="group" aria-label="Map controls"><button type="button" data-z="in" aria-label="Zoom in">+</button><button type="button" data-z="out" aria-label="Zoom out">−</button><button type="button" data-z="reset" aria-label="Reset view">⤾</button></div>
+</div>
+<p class="hint">Drag to pan · scroll or pinch to zoom</p>
+<div class="tot" style="--c:var(--violet)"><div class="n" id="m-count">0 / 0</div><div class="l">Explored</div><div class="mbar"><i id="m-fill"></i></div><div><button type="button" class="clipbtn" id="m-reset"><span aria-hidden="true">↺</span> Reset</button></div></div>
+<h3 class="cl-h">Regions</h3>
+<div id="m-regions"></div>
+<h3 class="cl-h">Marker legend</h3>
+<div class="kg" style="--c:var(--violet)">
+<div class="ki" style="--c:var(--blue)"><img src="images/map-icons/S_MiniMap_Transport.png" alt="Portal" loading="lazy"><span>Portal</span></div>
+<div class="ki" style="--c:var(--red)"><img src="images/map-icons/S_MiniMap_Dungeon_1.png" alt="Daily Dungeon" loading="lazy"><span>Daily Dungeon</span></div>
+<div class="ki" style="--c:var(--gold)"><img src="images/map-icons/S_MiniMap_Roulette.png" alt="Lucky Wheel" loading="lazy"><span>Lucky Wheel</span></div>
+<div class="ki" style="--c:var(--gold)"><img src="images/map-icons/C_MiniMap_Box.png" alt="Treasure Chest" loading="lazy"><span>Treasure Chest</span></div>
+<div class="ki" style="--c:var(--violet)"><img src="images/map-icons/S_MiniMap_Goddess.png" alt="Goddess Statue" loading="lazy"><span>Goddess Statue</span></div>
+<div class="ki" style="--c:var(--green)"><img src="images/map-icons/C_MiniMap_Challengestela.png" alt="Trial Stone" loading="lazy"><span>Trial Stone</span></div>
+<div class="ki" style="--c:var(--red)"><img src="images/map-icons/C_MiniMap_Monster1.png" alt="Monsters" loading="lazy"><span>Monsters</span></div>
+<div class="ki" style="--c:var(--green)"><img src="images/map-icons/C_MiniMap_Collection.png" alt="Ingredient Node" loading="lazy"><span>Ingredient Node</span></div>
+</div>
+<p class="hint">Map &amp; icons by <a href="https://lootandwaifus.com/sword-x-staff-interactive-map/" target="_blank" rel="noopener">Loot &amp; Waifus</a></p>
+</div>
 <div class="panel" id="changelog" role="tabpanel" hidden>
 <h1>Changelog</h1>
 <div class="sub">What's new</div>
@@ -741,7 +777,7 @@ nav.tabs button:last-child{margin-right:auto}
   Object.assign(RU,{"Normal": "Обычный", "Hard": "Сложный", "Nightmare": "Кошмар", "Purgatory": "Чистилище", "Abyss": "Бездна"});
   Object.assign(RU,{"Kingdom Unlock": "Открытие королевства", "Keys": "Ключи", "Drills": "Буры", "Sea Mines": "Морские мины", "Cloud Key": "Облачный ключ", "Hammer": "Молот"});
   Object.assign(RU,{"Classes":"Классы"});
-  Object.assign(RU,{"Events":"События","Current":"Текущие","Upcoming":"Будущие","Past":"Прошедшие","Current, upcoming & past":"Текущие, будущие и прошедшие","Events move automatically based on today's date. To add one, copy an event card below and set its start and end dates (YYYY-MM-DD).":"События перемещаются автоматически по дате. Чтобы добавить событие, скопируйте карточку ниже и укажите даты начала и конца (ГГГГ-ММ-ДД).","Bingo Bonanza":"Бинго Бонанза","Use Destiny fruits for extra Bingo points. Save 250-300 fruits and keep 8,000-10,000 Dawnium in reserve.":"Используйте плоды судьбы для доп. очков Бинго. Сохраните 250-300 плодов и держите запас 8 000-10 000 Dawnium.","Starfall Covenant Gacha":"Гача Starfall Covenant","Aethyris second relic Gacha. Save pulls for Day 31 and finish a relic set for the set bonus.":"Вторая гача реликвий Aethyris. Копите крутки к 31-му дню и соберите комплект реликвий для бонуса.","Summer Sprint":"Летний спринт","Example past event. Copy this card to add your own, then change the title, text and dates.":"Пример прошедшего события. Скопируйте карточку, чтобы добавить своё, затем поменяйте название, текст и даты.","Wonder Hot Pot":"Чудо-Хотпот","Wonder Flavors collab event. Cook hotpot together: sign in for free Visages, pull the Stellar Plume Visage, and stock up in the Flavor Shop.":"Коллаб-событие Wonder Flavors. Готовьте хотпот вместе: заходите за бесплатными Visage, выбивайте Visage Stellar Plume и запасайтесь в Flavor Shop.","Sign-In Bonus:":"Бонус за вход:","Sign in 7 days to claim the weapon Visages, Wonder Meatballs & Wonder Konjac, for free.":"Заходите 7 дней, чтобы бесплатно получить оружейные Visage, Wonder Meatballs и Wonder Konjac.","New Visage:":"Новый Visage:","Stellar Plume, with a falling-petal effect. Collab Exclusive gacha: Draw x1 for 1, Draw x10 for 10, guaranteed drop every 10.":"Stellar Plume с эффектом падающих лепестков. Коллаб-гача Exclusive: крутка x1 за 1, x10 за 10, гарант каждые 10.","Flavor Shop:":"Flavor Shop:","Stock up on ingredients and cook hotpot. Free claim plus limited purchases, up to 800.":"Запасайтесь ингредиентами и готовьте хотпот. Бесплатный claim плюс лимитные покупки до 800.","Yum Packs:":"Yum Packs:","Limited-time packs: 780% value for 499 and 370% value for 4999. Limit 1 each.":"Лимитные паки: ценность 780% за 499 и 370% за 4999. Лимит по 1.","Details":"Подробнее","Redemption Codes":"Промокоды","New code every week":"Новый код каждую неделю","Current code":"Текущий код","Copy code":"Скопировать код","Redeem on iOS":"Активировать на iOS","Past codes":"Прошлые коды","Changelog":"Журнал изменений","What's new":"Что нового","Copy selected":"Скопировать выбранное","No active code right now. Check back soon.":"Сейчас нет активного кода. Загляните позже.","Haunted Carnival":"Жуткий карнавал","Halloween carnival event. Sign in for the Mumpkin Fantomon, join the Enigma Ball, wake the Spooky Pumpkin, and grab the werewolf costume and Home Chromas.":"Хэллоуин-карнавал. Заходите за Фантомона Mumpkin, участвуйте в Enigma Ball, разбудите Spooky Pumpkin и забирайте костюм оборотня и Home Chromas.","Carnival Sign-In:":"Карнавал: вход:","14 days. Halloween Weather on day 7, Legendary Fantomon Mumpkin on day 14.":"14 дней. Halloween Weather на 7-й день, легендарный Фантомон Mumpkin на 14-й день.","Spooky Night:":"Жуткая ночь:","Join the Enigma Ball for Tricksy Candy and Firework Shells. Chance at 98-2,888 Dawnium.":"Участвуйте в Enigma Ball ради Tricksy Candy и Firework Shells. Шанс на 98-2 888 Dawnium.","Prank Panic:":"Prank Panic:","Set off fireworks to wake the Spooky Pumpkin, then team up. Clear all challenges: Bond Trinket x17 and Wheel Ticket x16.":"Запускайте фейерверки, чтобы разбудить Spooky Pumpkin, затем сражайтесь командой. За все испытания: Bond Trinket x17 и Wheel Ticket x16.","Candy Craze:":"Candy Craze:","Match pranksters invading Kanstein. Clear all stages: 14 Wheel Tickets.":"Собирайте проказников, вторгшихся в Kanstein. За все уровни: 14 Wheel Tickets.","Phantom Snapshots:":"Phantom Snapshots:","Track down the lurking figures: 12 Wheel Tickets.":"Выследите все скрытые фигуры: 12 Wheel Tickets.","Pumpkin Ghost Hunt:":"Охота на тыквенных призраков:","Pumpkin Ghosts replace Stellar Slimes at double rate. Defeat them for Dawnium and Tricksy Candy.":"Тыквенные призраки заменяют Stellar Slimes с двойным шансом. Побеждайте их ради Dawnium и Tricksy Candy.","Spooky Shop:":"Жуткий магазин:","Pumpkin costume showcase":"Витрина тыквенных костюмов","Werewolf costume plus Gacha Chroma, Wheel Tickets, Bond Sigils and Firework Shells.":"Костюм оборотня, а также Gacha Chroma, Wheel Tickets, Bond Sigils и Firework Shells.","Eldritch Tome:":"Eldritch Tome:","Level the tome for rewards including a free Vendor Booth Chroma. Premium unlock $9.99.":"Прокачивайте том ради наград, включая бесплатную Vendor Booth Chroma. Премиум за $9.99.","Twilight Castle:":"Twilight Castle:","Blacksail Waltz":"Вальс Чёрного паруса","Limited-time pirate cosmetic set, available for purchase. Two full outfits plus matching hats, weapons and accessories.":"Лимитный пиратский косметический сет, доступен для покупки. Два полных образа плюс шляпы, оружие и аксессуары.","Captain's look:":"Образ капитана:","Tricorn with gold star, corset dress, spiked morningstar mace and flintlock.":"Треуголка с золотой звездой, корсетное платье, шипастая булава и пистолет.","Swordsman's look:":"Образ мечника:","Long pirate coat with gold trim, cutlass, leather gear and boots.":"Длинный пиратский камзол с золотой отделкой, абордажная сабля, кожаное снаряжение и сапоги.","Extras:":"Дополнительно:","Compass, treasure map, ship's wheel, hook and pistol pieces, mix and match.":"Компас, карта сокровищ, штурвал, крюк и детали пистолета — комбинируйте как хотите.","Halloween Home Chroma set. Free Interior Decor in the first reward tier.":"Хэллоуинский набор Home Chroma. Бесплатный Interior Decor в первом тире наград."});
+  Object.assign(RU,{"Events":"События","Current":"Текущие","Upcoming":"Будущие","Past":"Прошедшие","Current, upcoming & past":"Текущие, будущие и прошедшие","Events move automatically based on today's date. To add one, copy an event card below and set its start and end dates (YYYY-MM-DD).":"События перемещаются автоматически по дате. Чтобы добавить событие, скопируйте карточку ниже и укажите даты начала и конца (ГГГГ-ММ-ДД).","Bingo Bonanza":"Бинго Бонанза","Use Destiny fruits for extra Bingo points. Save 250-300 fruits and keep 8,000-10,000 Dawnium in reserve.":"Используйте плоды судьбы для доп. очков Бинго. Сохраните 250-300 плодов и держите запас 8 000-10 000 Dawnium.","Starfall Covenant Gacha":"Гача Starfall Covenant","Aethyris second relic Gacha. Save pulls for Day 31 and finish a relic set for the set bonus.":"Вторая гача реликвий Aethyris. Копите крутки к 31-му дню и соберите комплект реликвий для бонуса.","Summer Sprint":"Летний спринт","Example past event. Copy this card to add your own, then change the title, text and dates.":"Пример прошедшего события. Скопируйте карточку, чтобы добавить своё, затем поменяйте название, текст и даты.","Wonder Hot Pot":"Чудо-Хотпот","Wonder Flavors collab event. Cook hotpot together: sign in for free Visages, pull the Stellar Plume Visage, and stock up in the Flavor Shop.":"Коллаб-событие Wonder Flavors. Готовьте хотпот вместе: заходите за бесплатными Visage, выбивайте Visage Stellar Plume и запасайтесь в Flavor Shop.","Sign-In Bonus:":"Бонус за вход:","Sign in 7 days to claim the weapon Visages, Wonder Meatballs & Wonder Konjac, for free.":"Заходите 7 дней, чтобы бесплатно получить оружейные Visage, Wonder Meatballs и Wonder Konjac.","New Visage:":"Новый Visage:","Stellar Plume, with a falling-petal effect. Collab Exclusive gacha: Draw x1 for 1, Draw x10 for 10, guaranteed drop every 10.":"Stellar Plume с эффектом падающих лепестков. Коллаб-гача Exclusive: крутка x1 за 1, x10 за 10, гарант каждые 10.","Flavor Shop:":"Flavor Shop:","Stock up on ingredients and cook hotpot. Free claim plus limited purchases, up to 800.":"Запасайтесь ингредиентами и готовьте хотпот. Бесплатный claim плюс лимитные покупки до 800.","Yum Packs:":"Yum Packs:","Limited-time packs: 780% value for 499 and 370% value for 4999. Limit 1 each.":"Лимитные паки: ценность 780% за 499 и 370% за 4999. Лимит по 1.","Details":"Подробнее","Redemption Codes":"Промокоды","New code every week":"Новый код каждую неделю","Current code":"Текущий код","Copy code":"Скопировать код","Redeem on iOS":"Активировать на iOS","Past codes":"Прошлые коды","Changelog":"Журнал изменений","What's new":"Что нового","Copy selected":"Скопировать выбранное","World Map":"Карта мира","Aethyris · all regions":"Aethyris · все регионы","Drag to pan · scroll or pinch to zoom":"Тяните для перемещения · масштабируйте колесом или щипком","Explored":"Исследовано","Reset":"Сбросить","Regions":"Регионы","Marker legend":"Легенда маркеров","Map & icons by":"Карта и иконки:","Portal":"Портал","Daily Dungeon":"Ежедневное подземелье (Daily Dungeon)","Lucky Wheel":"Колесо удачи","Treasure Chest":"Сундук с сокровищами","Goddess Statue":"Статуя богини","Trial Stone":"Камень испытаний","Monsters":"Монстры","Ingredient Node":"Узел ингредиентов","No active code right now. Check back soon.":"Сейчас нет активного кода. Загляните позже.","Haunted Carnival":"Жуткий карнавал","Halloween carnival event. Sign in for the Mumpkin Fantomon, join the Enigma Ball, wake the Spooky Pumpkin, and grab the werewolf costume and Home Chromas.":"Хэллоуин-карнавал. Заходите за Фантомона Mumpkin, участвуйте в Enigma Ball, разбудите Spooky Pumpkin и забирайте костюм оборотня и Home Chromas.","Carnival Sign-In:":"Карнавал: вход:","14 days. Halloween Weather on day 7, Legendary Fantomon Mumpkin on day 14.":"14 дней. Halloween Weather на 7-й день, легендарный Фантомон Mumpkin на 14-й день.","Spooky Night:":"Жуткая ночь:","Join the Enigma Ball for Tricksy Candy and Firework Shells. Chance at 98-2,888 Dawnium.":"Участвуйте в Enigma Ball ради Tricksy Candy и Firework Shells. Шанс на 98-2 888 Dawnium.","Prank Panic:":"Prank Panic:","Set off fireworks to wake the Spooky Pumpkin, then team up. Clear all challenges: Bond Trinket x17 and Wheel Ticket x16.":"Запускайте фейерверки, чтобы разбудить Spooky Pumpkin, затем сражайтесь командой. За все испытания: Bond Trinket x17 и Wheel Ticket x16.","Candy Craze:":"Candy Craze:","Match pranksters invading Kanstein. Clear all stages: 14 Wheel Tickets.":"Собирайте проказников, вторгшихся в Kanstein. За все уровни: 14 Wheel Tickets.","Phantom Snapshots:":"Phantom Snapshots:","Track down the lurking figures: 12 Wheel Tickets.":"Выследите все скрытые фигуры: 12 Wheel Tickets.","Pumpkin Ghost Hunt:":"Охота на тыквенных призраков:","Pumpkin Ghosts replace Stellar Slimes at double rate. Defeat them for Dawnium and Tricksy Candy.":"Тыквенные призраки заменяют Stellar Slimes с двойным шансом. Побеждайте их ради Dawnium и Tricksy Candy.","Spooky Shop:":"Жуткий магазин:","Pumpkin costume showcase":"Витрина тыквенных костюмов","Werewolf costume plus Gacha Chroma, Wheel Tickets, Bond Sigils and Firework Shells.":"Костюм оборотня, а также Gacha Chroma, Wheel Tickets, Bond Sigils и Firework Shells.","Eldritch Tome:":"Eldritch Tome:","Level the tome for rewards including a free Vendor Booth Chroma. Premium unlock $9.99.":"Прокачивайте том ради наград, включая бесплатную Vendor Booth Chroma. Премиум за $9.99.","Twilight Castle:":"Twilight Castle:","Blacksail Waltz":"Вальс Чёрного паруса","Limited-time pirate cosmetic set, available for purchase. Two full outfits plus matching hats, weapons and accessories.":"Лимитный пиратский косметический сет, доступен для покупки. Два полных образа плюс шляпы, оружие и аксессуары.","Captain's look:":"Образ капитана:","Tricorn with gold star, corset dress, spiked morningstar mace and flintlock.":"Треуголка с золотой звездой, корсетное платье, шипастая булава и пистолет.","Swordsman's look:":"Образ мечника:","Long pirate coat with gold trim, cutlass, leather gear and boots.":"Длинный пиратский камзол с золотой отделкой, абордажная сабля, кожаное снаряжение и сапоги.","Extras:":"Дополнительно:","Compass, treasure map, ship's wheel, hook and pistol pieces, mix and match.":"Компас, карта сокровищ, штурвал, крюк и детали пистолета — комбинируйте как хотите.","Halloween Home Chroma set. Free Interior Decor in the first reward tier.":"Хэллоуинский набор Home Chroma. Бесплатный Interior Decor в первом тире наград."});
   var nodes=[],attrs=[];
   var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode.nodeName;return(p==='SCRIPT'||p==='STYLE'||!n.nodeValue.trim())?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT}});
   while(w.nextNode())nodes.push([w.currentNode,w.currentNode.nodeValue]);
@@ -1048,6 +1084,88 @@ document.querySelector('nav.tabs').addEventListener('click',function(e){var b=e.
   });
   render();
   new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+})();
+</script>
+<script>
+(function(){
+  var v=document.getElementById('mapview');if(!v)return;
+  var img=document.getElementById('mapimg');
+  var st={x:0,y:0,k:1},MIN=1,MAX=6;
+  function apply(){img.style.transform='translate('+st.x+'px,'+st.y+'px) scale('+st.k+')'}
+  function clamp(){var W=v.clientWidth,H=v.clientHeight;st.x=Math.min(0,Math.max(W-W*st.k,st.x));st.y=Math.min(0,Math.max(H-H*st.k,st.y))}
+  function zoom(f,cx,cy){var r=v.getBoundingClientRect();cx=cx==null?r.width/2:cx-r.left;cy=cy==null?r.height/2:cy-r.top;var k2=Math.min(MAX,Math.max(MIN,st.k*f));var s=k2/st.k;st.x=cx-(cx-st.x)*s;st.y=cy-(cy-st.y)*s;st.k=k2;clamp();apply()}
+  v.querySelectorAll('.mapctl button').forEach(function(b){b.addEventListener('click',function(){var z=b.getAttribute('data-z');if(z==='in')zoom(1.4);else if(z==='out')zoom(1/1.4);else{st={x:0,y:0,k:1};apply()}})});
+  v.addEventListener('wheel',function(e){e.preventDefault();zoom(e.deltaY<0?1.15:1/1.15,e.clientX,e.clientY)},{passive:false});
+  v.addEventListener('dblclick',function(e){e.preventDefault();if(st.k>2.5){st={x:0,y:0,k:1};apply()}else{zoom(1.6,e.clientX,e.clientY)}});
+  var pts=new Map(),lx=0,ly=0,pinch=0;
+  v.addEventListener('pointerdown',function(e){try{v.setPointerCapture(e.pointerId)}catch(err){}pts.set(e.pointerId,[e.clientX,e.clientY]);if(pts.size===1){lx=e.clientX;ly=e.clientY}else if(pts.size===2){var a=Array.from(pts.values());pinch=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1])}});
+  v.addEventListener('pointermove',function(e){if(!pts.has(e.pointerId))return;pts.set(e.pointerId,[e.clientX,e.clientY]);if(pts.size===1){st.x+=e.clientX-lx;st.y+=e.clientY-ly;lx=e.clientX;ly=e.clientY;clamp();apply()}else if(pts.size===2){var a=Array.from(pts.values());var dd=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);if(pinch>0){zoom(dd/pinch,(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2)}pinch=dd}});
+  function up(e){pts.delete(e.pointerId);pinch=0}
+  v.addEventListener('pointerup',up);v.addEventListener('pointercancel',up);
+})();
+</script>
+<script>
+(function(){
+  var box=document.getElementById('m-regions');if(!box)return;
+  var MAP=[
+  {r:"Aethyris I",lv:130,areas:[["Crystal Spiral Tree",129],["Treasure of Redemption",129],["Skyrend Cliff",132]]},
+  {r:"Aethyris II",lv:130,areas:[["Ancestor Woods",134],["Sanctum Ruins",139],["Oracle Jungle",146]]},
+  {r:"Aethyris III",lv:131,areas:[["Psion Veins",136],["Phantom Starwood",139],["Aerial Vault",139],["The Barrens",149]]},
+  {r:"Aethyris IV",lv:132,areas:[["Eternal Garden",132],["Harmonic Crystal I",132],["Shifting Mesa",138],["Mourning Sea",144],["Glinting Slab",144],["Lost Dales",160]]},
+  {r:"Aethyris V",lv:134,areas:[["Unbroken Camp",134],["Mystic Highlands",140],["Temple of the Goddess",152],["Blessing Slab",152],["Fallen Gorge",160]]},
+  {r:"Aethyris VI",lv:135,areas:[["Dirge Isle",141],["Dreamscape",145],["Profane Grove",149],["Blessed Road",155],["Harmonic Crystal II",155],["Contemplation Court",160]]},
+  {r:"Aethyris VII",lv:139,areas:[["Astral Altar",149],["Void Wastes",160],["Purge Cliffs",160],["Paleveil Woods",150]]},
+  {r:"Aethyris VIII",lv:139,areas:[["Treasure of Decay",160],["Forest of Dread",149],["Riftwatch Fortress",149],["The Final Brink",154]]},
+  {r:"Aethyris IX",lv:139,areas:[["Moon's Bane",147],["Path of Despair",159],["Court of Truth",160],["Harmonic Crystal III",160]]},
+  {r:"Aethyris X",lv:140,areas:[["Corrupted Ruins",153],["Celestial Temple",160],["Path of Oblivion",160],["Sludge Stone",160],["Cataclysmic Sanctum",160]]},
+  {r:"Aethyris XI",lv:143,areas:[["Slab of Knowledge",143],["Submerged Ruins",149],["Lifeless Vault",149],["Starward Court",149],["Hall of Secrets",151],["Court of Purification",151]]},
+  {r:"Aethyris XII",lv:145,areas:[["Hunting Grounds",156],["Void Promenade",160],["Dawn Terrace",160],["The Lorn Lands",160],["Harmonic Crystal IV",160],["Fallen Ruins",160]]},
+  {r:"Aethyris XIII",lv:148,areas:[["Ritual Hall",157],["Sanctum of Rites",157],["Temple of Order",149]]},
+  {r:"Aethyris XIV",lv:149,areas:[["Harmonic Crystal V",149],["Place of Echoes",160],["Derelict Garden",160]]},
+  {r:"Aethyris XV",lv:149,areas:[["Ashen Hoop",160],["Scholomance Ruins",158],["Tablet of Meaning",158],["Eternal Debris",160],["Sunspire",160]]},
+  {r:"Aethyris XVI",lv:151,areas:[["Oblivion Court",160],["Abyss of Chaos",160],["Broken Citadel",160],["Valor Plaza",160],["Keystone Altar",160]]},
+  {r:"Aethyris XVII",lv:153,areas:[["Palace of Illusions",160],["Void Sanctum",160],["Flame of the Fallen God",160],["Land of Benediction",160],["Azure Monolith",160],["Healer's Ruins",160],["Astral Bounty",160]]},
+  {r:"Aethyris XVIII",lv:155,areas:[["Voyage Harbor",155],["Harmonic Crystal VI",155],["Sanctum's Fall",160],["Spire Vault",160],["Genesis Path",160],["Avenue of Gods",160],["Regal Lair",160],["Relic of Rebirth",160],["The Sundered End",143],["Isle of Plenty",156],["Starfall Treasury",156],["City of the Void",159],["Guardian's Ground",160],["Valhalla Bridge",150],["Blocked Bridge",158]]}
+  ];
+  var KEY='aethyris-map-v1',done={};
+  try{done=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){done={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}}
+  var total=0;
+  MAP.forEach(function(g,gi){
+    var wrap=document.createElement('div');wrap.className='rgloc';wrap.style.marginBottom='8px';
+    var h=document.createElement('h4');h.textContent=g.r+' ';
+    var lv=document.createElement('span');lv.className='log-date';lv.textContent='Lv '+g.lv;h.appendChild(lv);wrap.appendChild(h);
+    g.areas.forEach(function(a,ai){
+      total++;
+      var id='m'+gi+'_'+ai;
+      var lab=document.createElement('label');lab.className='mrow';
+      var chk=document.createElement('span');chk.className='log-check';
+      var cb=document.createElement('input');cb.type='checkbox';cb.checked=!!done[id];
+      cb.setAttribute('aria-label',a[0]);
+      cb.addEventListener('change',function(){if(cb.checked){done[id]=1}else{delete done[id]}save();progress();lab.classList.toggle('done',cb.checked)});
+      chk.appendChild(cb);
+      var nm=document.createElement('span');nm.className='mname';nm.textContent=a[0];
+      var pill=document.createElement('span');pill.className='log-date';pill.textContent=a[1];
+      lab.appendChild(chk);lab.appendChild(nm);lab.appendChild(pill);
+      if(cb.checked)lab.classList.add('done');
+      wrap.appendChild(lab);
+    });
+    box.appendChild(wrap);
+  });
+  function progress(){
+    var n=Object.keys(done).length;
+    document.getElementById('m-count').textContent=n+' / '+total;
+    document.getElementById('m-fill').style.width=(total?n/total*100:0)+'%';
+  }
+  document.getElementById('m-reset').addEventListener('click',function(){
+    if(!Object.keys(done).length)return;
+    var ru=document.documentElement.lang==='ru';
+    if(!confirm(ru?'Сбросить все отметки?':'Reset all checks?'))return;
+    done={};save();
+    box.querySelectorAll('input').forEach(function(i){i.checked=false;i.closest('.mrow').classList.remove('done')});
+    progress();
+  });
+  progress();
 })();
 </script>
 </body>
