@@ -1,0 +1,28 @@
+name: Changelog to Discord
+
+# Posts new site changelog entries to your Discord channel on every push.
+# Nothing runs on anyone's computer - this executes on GitHub's own servers.
+# Requires the DISCORD_WEBHOOK_URL repo secret (a channel webhook, which you
+# create in Discord via Channel Settings > Integrations > Webhooks).
+
+on:
+  push:
+    branches: [main]
+    paths: [index.html]
+  workflow_dispatch: # manual "Run workflow" button for testing
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 2 # need HEAD~1 to diff the changelog block
+
+      - name: Post new entries to Discord
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python discord_notify.py
