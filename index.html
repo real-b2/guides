@@ -145,6 +145,12 @@ nav.tabs::-webkit-scrollbar{display:none}
 nav.tabs button{flex:0 0 auto;white-space:nowrap;padding:8px 14px}
 nav.tabs button:first-child{margin-left:auto}
 nav.tabs button:last-child{margin-right:auto}
+.tabwrap{position:relative}
+.tabwrap nav.tabs{padding-left:48px;padding-right:48px}
+.tabprev,.tabnext{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:2px solid var(--violet);background:var(--panel);color:var(--ink);font:800 1.2rem/1 Nunito,system-ui,sans-serif;cursor:pointer;z-index:6;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.tabprev:hover,.tabnext:hover{background:color-mix(in srgb,var(--violet) 25%,transparent)}
+.tabprev:focus-visible,.tabnext:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+.tabprev{left:6px}.tabnext{right:6px}
 .tipc{background:var(--panel);border-left:6px solid var(--c);border-radius:6px 18px 18px 6px;padding:18px;margin-bottom:14px}
 .tipc h2{font-family:'Baloo 2',system-ui,sans-serif;font-weight:800;font-size:1.45rem;line-height:1.15;margin:0 0 8px;color:var(--c)}
 .tipc p{margin:0 0 10px;color:var(--mute)}
@@ -797,6 +803,24 @@ button.ki{font:inherit;color:inherit;cursor:pointer}
 </script>
 <script>
 document.querySelector('nav.tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b&&b.scrollIntoView)b.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})});
+</script>
+<script>
+(function(){
+  var nav=document.querySelector('nav.tabs');if(!nav||!nav.parentNode)return;
+  var ru=document.documentElement.lang==='ru';
+  var wrap=document.createElement('div');wrap.className='tabwrap';
+  nav.parentNode.insertBefore(wrap,nav);wrap.appendChild(nav);
+  function mk(cls,label,ch,dir){
+    var b=document.createElement('button');b.type='button';b.className=cls;
+    b.setAttribute('aria-label',label);b.textContent=ch;
+    b.addEventListener('click',function(){nav.scrollBy({left:dir*Math.max(200,nav.clientWidth*0.7),behavior:'smooth'})});
+    wrap.appendChild(b);return b;
+  }
+  var prev=mk('tabprev',ru?'Прокрутить табы влево':'Scroll tabs left','‹',-1);
+  var next=mk('tabnext',ru?'Прокрутить табы вправо':'Scroll tabs right','›',1);
+  function vis(){var max=nav.scrollWidth-nav.clientWidth;prev.style.display=(max>4&&nav.scrollLeft>4)?'':'none';next.style.display=(max>4&&nav.scrollLeft<max-4)?'':'none'}
+  nav.addEventListener('scroll',vis,{passive:true});window.addEventListener('resize',vis);vis();
+})();
 </script>
 <script>
 (function(){
