@@ -1088,7 +1088,7 @@ document.querySelector('nav.tabs').addEventListener('click',function(e){var b=e.
   var wrap=document.getElementById('mapwrap'),layer=document.getElementById('pinlayer');
   var st={x:0,y:0,k:1},MIN=1,MAX=6;
   function apply(){wrap.style.transform='translate('+st.x+'px,'+st.y+'px) scale('+st.k+')';layer.style.setProperty('--ps',1/st.k);var _qh=window.__mapZoomHooks||[];for(var qi=0;qi<_qh.length;qi++){try{_qh[qi](st.k)}catch(e){}}}
-  function clamp(){var W=v.clientWidth,H=v.clientHeight;st.x=Math.min(0,Math.max(W-W*st.k,st.x));st.y=Math.min(0,Math.max(H-H*st.k,st.y))}
+  function clamp(){var W=v.clientWidth,H=v.clientHeight;var bx=W*0.12,by=H*0.12;st.x=Math.min(bx,Math.max(W-W*st.k-bx,st.x));st.y=Math.min(by,Math.max(H-H*st.k-by,st.y))}
   function zoom(f,cx,cy){var r=v.getBoundingClientRect();cx=cx==null?r.width/2:cx-r.left;cy=cy==null?r.height/2:cy-r.top;var k2=Math.min(MAX,Math.max(MIN,st.k*f));var s=k2/st.k;st.x=cx-(cx-st.x)*s;st.y=cy-(cy-st.y)*s;st.k=k2;clamp();apply()}
   v.querySelectorAll('.mapctl button').forEach(function(b){b.addEventListener('click',function(){var z=b.getAttribute('data-z');if(z==='in')zoom(1.4);else if(z==='out')zoom(1/1.4);else{st={x:0,y:0,k:1};apply()}})});
   v.addEventListener('wheel',function(e){e.preventDefault();zoom(e.deltaY<0?1.15:1/1.15,e.clientX,e.clientY)},{passive:false});
