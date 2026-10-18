@@ -207,6 +207,8 @@ nav.tabs button:last-child{margin-right:auto}
 .pin{position:absolute;width:22px;height:22px;padding:0;border:0;background:none;cursor:pointer;transform:translate(-50%,-50%)}
 .pin img{display:block;width:100%;height:100%;transform:scale(var(--ps,1))}
 button.ki{font:inherit;color:inherit;cursor:pointer}
+.mlabel{display:flex;gap:10px;align-items:center;padding:6px 8px;font-weight:600}
+.mlabel .mname{flex:1}
 .ki.off{opacity:.45;filter:saturate(.5)}
 .mapctl{position:absolute;right:8px;bottom:8px;display:flex;gap:6px}
 .mapctl button{width:40px;height:40px;border-radius:50%;border:2px solid var(--violet);background:var(--panel);color:var(--ink);font:800 1.2rem Nunito,system-ui,sans-serif;cursor:pointer}
@@ -684,6 +686,137 @@ button.ki{font:inherit;color:inherit;cursor:pointer}
 <p class="hint">Drag to pan · scroll or pinch to zoom</p>
 
 <script id="map-data" type="application/json">[{"t":"blockade","n":"Boulder Blockade","i":"S_MiniMap_Block2","x":536.0,"y":2696.0},{"t":"blockade","n":"Boulder Blockade","i":"S_MiniMap_Block2","x":1256.0,"y":1000.0},{"t":"blockade","n":"Chaos Crystal","i":"S_MiniMap_Block4","x":840.0,"y":2184.0},{"t":"blockade","n":"Chaos Crystal","i":"S_MiniMap_Block4","x":1560.0,"y":1224.0},{"t":"blockade","n":"Chaos Crystal","i":"S_MiniMap_Block4","x":2520.0,"y":3576.0},{"t":"blockade","n":"Chaos Crystal","i":"S_MiniMap_Block4","x":3256.0,"y":3080.0},{"t":"blockade","n":"Chaos Crystal","i":"S_MiniMap_Block4","x":3480.0,"y":1160.0},{"t":"blockade","n":"Chaos Crystal","i":"S_MiniMap_Block4","x":4344.0,"y":2184.0},{"t":"blockade","n":"Cloud Bridge","i":"item_324","x":1944.0,"y":536.0},{"t":"blockade","n":"Cloud Bridge","i":"item_324","x":3944.0,"y":1512.0},{"t":"blockade","n":"Coral Blockade","i":"S_MiniMap_Block3","x":3208.0,"y":2984.0},{"t":"blockade","n":"Coral Blockade","i":"S_MiniMap_Block3","x":4472.0,"y":2984.0},{"t":"lucky_wheel","n":"Lucky Wheel","i":"S_MiniMap_Roulette","x":1000.0,"y":1176.0},{"t":"lucky_wheel","n":"Lucky Wheel","i":"S_MiniMap_Roulette","x":2120.0,"y":440.0},{"t":"lucky_wheel","n":"Lucky Wheel","i":"S_MiniMap_Roulette","x":2552.0,"y":2408.0},{"t":"lucky_wheel","n":"Lucky Wheel","i":"S_MiniMap_Roulette","x":3240.0,"y":200.0},{"t":"trial_stone","n":"Trial Stone","i":"C_MiniMap_Challengestela","x":776.0,"y":3224.0},{"t":"trial_stone","n":"Trial Stone","i":"C_MiniMap_Challengestela","x":1336.0,"y":1128.0},{"t":"trial_stone","n":"Trial Stone","i":"C_MiniMap_Challengestela","x":1768.0,"y":2680.0},{"t":"trial_stone","n":"Trial Stone","i":"C_MiniMap_Challengestela","x":2632.0,"y":1176.0},{"t":"trial_stone","n":"Trial Stone","i":"C_MiniMap_Challengestela","x":3064.0,"y":2408.0},{"t":"trial_stone","n":"Trial Stone","i":"C_MiniMap_Challengestela","x":3272.0,"y":1144.0},{"t":"trial_stone","n":"Trial Stone","i":"C_MiniMap_Challengestela","x":3816.0,"y":2648.0},{"t":"trial_stone","n":"Trial Stone","i":"C_MiniMap_Challengestela","x":3880.0,"y":136.0},{"t":"trial_stone","n":"Trial Stone","i":"C_MiniMap_Challengestela","x":4408.0,"y":3192.0},{"t":"gem","n":"Gem Bag (Medium)","i":"item_500","x":1096.0,"y":2360.0},{"t":"gem","n":"Gem Bag (Medium)","i":"item_500","x":1288.0,"y":1736.0},{"t":"gem","n":"Gem Bag (Medium)","i":"item_500","x":3464.0,"y":1400.0},{"t":"gem","n":"Gem Bag (Medium)","i":"item_500","x":3576.0,"y":1928.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":184.0,"y":696.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":488.0,"y":2648.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":696.0,"y":1176.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":760.0,"y":2152.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":968.0,"y":1208.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":1384.0,"y":1224.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":1432.0,"y":1912.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":1688.0,"y":1304.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":1848.0,"y":504.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":2120.0,"y":1656.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":2264.0,"y":2376.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":2280.0,"y":824.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":2312.0,"y":1496.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":2376.0,"y":3448.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":2472.0,"y":2424.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":3000.0,"y":3048.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":3112.0,"y":1224.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":3144.0,"y":1144.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":3160.0,"y":2424.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":3240.0,"y":1736.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":3272.0,"y":3000.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":3288.0,"y":1128.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":3336.0,"y":3144.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":3352.0,"y":1128.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":3880.0,"y":2696.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":3912.0,"y":168.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":3928.0,"y":2168.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":3928.0,"y":2232.0},{"t":"gem","n":"Gem Bag (Small)","i":"item_500","x":3944.0,"y":1400.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":312.0,"y":2232.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":536.0,"y":968.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":872.0,"y":3016.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":1192.0,"y":1336.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":1224.0,"y":808.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":1624.0,"y":2376.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":1656.0,"y":2840.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":1864.0,"y":3432.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":2472.0,"y":1704.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":2536.0,"y":2408.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":2632.0,"y":968.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":2872.0,"y":856.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":3032.0,"y":2360.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":3256.0,"y":2648.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":3272.0,"y":2200.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":3448.0,"y":200.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":3624.0,"y":2296.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":3960.0,"y":2552.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":4008.0,"y":1240.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":4152.0,"y":2840.0},{"t":"gem","n":"Gem Ore (Medium)","i":"item_500","x":4248.0,"y":1672.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":392.0,"y":3256.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":520.0,"y":3128.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":584.0,"y":3304.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":696.0,"y":744.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":1048.0,"y":1320.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":1080.0,"y":2152.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":1240.0,"y":1112.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":1256.0,"y":2616.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":1768.0,"y":1560.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":1848.0,"y":2040.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":1896.0,"y":2648.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":2040.0,"y":3272.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":2072.0,"y":568.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":2184.0,"y":2872.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":2360.0,"y":392.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":2360.0,"y":1608.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":2552.0,"y":1416.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":2776.0,"y":2920.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":3160.0,"y":808.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":3208.0,"y":200.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":3512.0,"y":152.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":3576.0,"y":1112.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":3736.0,"y":2712.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":3736.0,"y":3320.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":4200.0,"y":1240.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":4296.0,"y":1752.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":4344.0,"y":2232.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":4552.0,"y":3240.0},{"t":"gem","n":"Gem Ore (Small)","i":"item_500","x":4648.0,"y":2904.0},{"t":"gem","n":"Gem Chest (Large)","i":"item_500","x":1800.0,"y":1224.0},{"t":"gem","n":"Gem Chest (Large)","i":"item_500","x":1960.0,"y":2232.0},{"t":"gem","n":"Gem Chest (Large)","i":"item_500","x":2184.0,"y":2696.0},{"t":"gem","n":"Gem Chest (Large)","i":"item_500","x":2856.0,"y":1864.0},{"t":"gem","n":"Gem Chest (Large)","i":"item_500","x":3320.0,"y":1112.0},{"t":"gem","n":"Gem Chest (Large)","i":"item_500","x":3496.0,"y":3368.0},{"t":"gem","n":"Gem Chest (Large)","i":"item_500","x":3896.0,"y":2376.0},{"t":"gem","n":"Gem Ore (Large)","i":"item_500","x":712.0,"y":2776.0}]</script>
+<h3 class="cl-h">Regions</h3>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris I <span class="log-date">Lv 130</span></h4>
+<div class="mlabel"><span class="mname">Crystal Spiral Tree</span><span class="log-date">129</span></div>
+<div class="mlabel"><span class="mname">Treasure of Redemption</span><span class="log-date">129</span></div>
+<div class="mlabel"><span class="mname">Skyrend Cliff</span><span class="log-date">132</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris II <span class="log-date">Lv 130</span></h4>
+<div class="mlabel"><span class="mname">Ancestor Woods</span><span class="log-date">134</span></div>
+<div class="mlabel"><span class="mname">Sanctum Ruins</span><span class="log-date">139</span></div>
+<div class="mlabel"><span class="mname">Oracle Jungle</span><span class="log-date">146</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris III <span class="log-date">Lv 131</span></h4>
+<div class="mlabel"><span class="mname">Psion Veins</span><span class="log-date">136</span></div>
+<div class="mlabel"><span class="mname">Phantom Starwood</span><span class="log-date">139</span></div>
+<div class="mlabel"><span class="mname">Aerial Vault</span><span class="log-date">139</span></div>
+<div class="mlabel"><span class="mname">The Barrens</span><span class="log-date">149</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris IV <span class="log-date">Lv 132</span></h4>
+<div class="mlabel"><span class="mname">Eternal Garden</span><span class="log-date">132</span></div>
+<div class="mlabel"><span class="mname">Harmonic Crystal I</span><span class="log-date">132</span></div>
+<div class="mlabel"><span class="mname">Shifting Mesa</span><span class="log-date">138</span></div>
+<div class="mlabel"><span class="mname">Mourning Sea</span><span class="log-date">144</span></div>
+<div class="mlabel"><span class="mname">Glinting Slab</span><span class="log-date">144</span></div>
+<div class="mlabel"><span class="mname">Lost Dales</span><span class="log-date">160</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris V <span class="log-date">Lv 134</span></h4>
+<div class="mlabel"><span class="mname">Unbroken Camp</span><span class="log-date">134</span></div>
+<div class="mlabel"><span class="mname">Mystic Highlands</span><span class="log-date">140</span></div>
+<div class="mlabel"><span class="mname">Temple of the Goddess</span><span class="log-date">152</span></div>
+<div class="mlabel"><span class="mname">Blessing Slab</span><span class="log-date">152</span></div>
+<div class="mlabel"><span class="mname">Fallen Gorge</span><span class="log-date">160</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris VI <span class="log-date">Lv 135</span></h4>
+<div class="mlabel"><span class="mname">Dirge Isle</span><span class="log-date">141</span></div>
+<div class="mlabel"><span class="mname">Dreamscape</span><span class="log-date">145</span></div>
+<div class="mlabel"><span class="mname">Profane Grove</span><span class="log-date">149</span></div>
+<div class="mlabel"><span class="mname">Blessed Road</span><span class="log-date">155</span></div>
+<div class="mlabel"><span class="mname">Harmonic Crystal II</span><span class="log-date">155</span></div>
+<div class="mlabel"><span class="mname">Contemplation Court</span><span class="log-date">160</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris VII <span class="log-date">Lv 139</span></h4>
+<div class="mlabel"><span class="mname">Astral Altar</span><span class="log-date">149</span></div>
+<div class="mlabel"><span class="mname">Void Wastes</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Purge Cliffs</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Paleveil Woods</span><span class="log-date">150</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris VIII <span class="log-date">Lv 139</span></h4>
+<div class="mlabel"><span class="mname">Treasure of Decay</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Forest of Dread</span><span class="log-date">149</span></div>
+<div class="mlabel"><span class="mname">Riftwatch Fortress</span><span class="log-date">149</span></div>
+<div class="mlabel"><span class="mname">The Final Brink</span><span class="log-date">154</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris IX <span class="log-date">Lv 139</span></h4>
+<div class="mlabel"><span class="mname">Moon's Bane</span><span class="log-date">147</span></div>
+<div class="mlabel"><span class="mname">Path of Despair</span><span class="log-date">159</span></div>
+<div class="mlabel"><span class="mname">Court of Truth</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Harmonic Crystal III</span><span class="log-date">160</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris X <span class="log-date">Lv 140</span></h4>
+<div class="mlabel"><span class="mname">Corrupted Ruins</span><span class="log-date">153</span></div>
+<div class="mlabel"><span class="mname">Celestial Temple</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Path of Oblivion</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Sludge Stone</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Cataclysmic Sanctum</span><span class="log-date">160</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris XI <span class="log-date">Lv 143</span></h4>
+<div class="mlabel"><span class="mname">Slab of Knowledge</span><span class="log-date">143</span></div>
+<div class="mlabel"><span class="mname">Submerged Ruins</span><span class="log-date">149</span></div>
+<div class="mlabel"><span class="mname">Lifeless Vault</span><span class="log-date">149</span></div>
+<div class="mlabel"><span class="mname">Starward Court</span><span class="log-date">149</span></div>
+<div class="mlabel"><span class="mname">Hall of Secrets</span><span class="log-date">151</span></div>
+<div class="mlabel"><span class="mname">Court of Purification</span><span class="log-date">151</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris XII <span class="log-date">Lv 145</span></h4>
+<div class="mlabel"><span class="mname">Hunting Grounds</span><span class="log-date">156</span></div>
+<div class="mlabel"><span class="mname">Void Promenade</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Dawn Terrace</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">The Lorn Lands</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Harmonic Crystal IV</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Fallen Ruins</span><span class="log-date">160</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris XIII <span class="log-date">Lv 148</span></h4>
+<div class="mlabel"><span class="mname">Ritual Hall</span><span class="log-date">157</span></div>
+<div class="mlabel"><span class="mname">Sanctum of Rites</span><span class="log-date">157</span></div>
+<div class="mlabel"><span class="mname">Temple of Order</span><span class="log-date">149</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris XIV <span class="log-date">Lv 149</span></h4>
+<div class="mlabel"><span class="mname">Harmonic Crystal V</span><span class="log-date">149</span></div>
+<div class="mlabel"><span class="mname">Place of Echoes</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Derelict Garden</span><span class="log-date">160</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris XV <span class="log-date">Lv 149</span></h4>
+<div class="mlabel"><span class="mname">Ashen Hoop</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Scholomance Ruins</span><span class="log-date">158</span></div>
+<div class="mlabel"><span class="mname">Tablet of Meaning</span><span class="log-date">158</span></div>
+<div class="mlabel"><span class="mname">Eternal Debris</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Sunspire</span><span class="log-date">160</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris XVI <span class="log-date">Lv 151</span></h4>
+<div class="mlabel"><span class="mname">Oblivion Court</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Abyss of Chaos</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Broken Citadel</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Valor Plaza</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Keystone Altar</span><span class="log-date">160</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris XVII <span class="log-date">Lv 153</span></h4>
+<div class="mlabel"><span class="mname">Palace of Illusions</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Void Sanctum</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Flame of the Fallen God</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Land of Benediction</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Azure Monolith</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Healer's Ruins</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Astral Bounty</span><span class="log-date">160</span></div>
+</div>
+<div class="rgloc" style="margin-bottom:8px"><h4>Aethyris XVIII <span class="log-date">Lv 155</span></h4>
+<div class="mlabel"><span class="mname">Voyage Harbor</span><span class="log-date">155</span></div>
+<div class="mlabel"><span class="mname">Harmonic Crystal VI</span><span class="log-date">155</span></div>
+<div class="mlabel"><span class="mname">Sanctum's Fall</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Spire Vault</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Genesis Path</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Avenue of Gods</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Regal Lair</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Relic of Rebirth</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">The Sundered End</span><span class="log-date">143</span></div>
+<div class="mlabel"><span class="mname">Isle of Plenty</span><span class="log-date">156</span></div>
+<div class="mlabel"><span class="mname">Starfall Treasury</span><span class="log-date">156</span></div>
+<div class="mlabel"><span class="mname">City of the Void</span><span class="log-date">159</span></div>
+<div class="mlabel"><span class="mname">Guardian's Ground</span><span class="log-date">160</span></div>
+<div class="mlabel"><span class="mname">Valhalla Bridge</span><span class="log-date">150</span></div>
+<div class="mlabel"><span class="mname">Blocked Bridge</span><span class="log-date">158</span></div>
+</div>
 <h3 class="cl-h">Marker legend</h3>
 <div class="kg" id="m-legend" style="--c:var(--violet)"></div>
 <p class="hint">Map &amp; icons by <a href="https://lootandwaifus.com/sword-x-staff-interactive-map/" target="_blank" rel="noopener">Loot &amp; Waifus</a></p>
