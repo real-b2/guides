@@ -19,10 +19,16 @@ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:en
 .tlab select:hover{border-color:var(--violet);color:var(--ink)}
 .tlab select:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
 .tlab select option{color:#241a3a}
+@media (min-width:1000px){
+  main{max-width:1060px}
+  .panel{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;align-items:start}
+  .panel>*{grid-column:1/-1;min-width:0}
+  .panel>.row,.panel>.tipc{grid-column:auto;margin-bottom:16px}
+}
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;line-height:1.5}
-main{max-width:640px;margin:0 auto;padding:32px 16px 48px}
+main{max-width:720px;margin:0 auto;padding:32px 16px 48px}
 h1{font-family:'Quicksand',system-ui,sans-serif;font-weight:800;font-size:clamp(2.2rem,8vw,3.4rem);line-height:1;margin:0;letter-spacing:-.01em}
 .sub{font-family:'Quicksand',system-ui,sans-serif;font-weight:600;font-size:1.25rem;color:var(--gold);margin:6px 0 28px}
 .row{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;background:var(--panel);border-left:6px solid var(--c);border-radius:6px 18px 18px 6px;padding:16px 18px;margin-bottom:12px}
