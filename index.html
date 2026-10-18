@@ -21,9 +21,9 @@ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:en
 .tlab select option{color:#241a3a}
 @media (min-width:1000px){
   main{max-width:1060px}
-  .panel{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;align-items:start}
-  .panel>*{grid-column:1/-1;min-width:0}
-  .panel>.row,.panel>.tipc{grid-column:auto;margin-bottom:16px}
+  .panel{columns:2;column-gap:16px}
+  .panel>*{column-span:all;min-width:0}
+  .panel>.row,.panel>.tipc{column-span:none;break-inside:avoid;margin-bottom:16px}
 }
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
