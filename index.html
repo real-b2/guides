@@ -112,8 +112,11 @@ nav.tabs button{padding:8px 16px}
 .fc strong{display:block;font-family:'Quicksand',system-ui,sans-serif;font-size:1rem;line-height:1.1}
 .fc span.nm{display:block;font-size:.68rem;font-weight:700;color:var(--mute);overflow-wrap:anywhere}
 .scroll{overflow-x:auto}
-.roster{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
-.roster div{flex:0 0 76px;text-align:center;font-size:.72rem;font-weight:700;color:var(--mute)}
+.roster{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--violet) 60%,transparent) transparent}
+.roster::-webkit-scrollbar{height:6px}
+.roster::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--violet) 55%,transparent);border-radius:99px}
+.roster::-webkit-scrollbar-track{background:transparent}
+.roster div{flex:0 0 80px;text-align:center;font-size:.78rem;line-height:1.35;font-weight:700;color:var(--ink)}
 .roster .sp{height:56px;margin-bottom:4px}
 .cartimg{display:block;margin:0 auto 18px;max-width:100%;height:auto;border-radius:18px;border:2px solid var(--gold)}
 .cl{margin:0;padding:0;display:grid;gap:8px}
