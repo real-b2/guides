@@ -46,17 +46,25 @@ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:en
   #cart>.row{column-span:all}
   .panel>.row.wide{column-span:all}
   #daily{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:14px}
-  #daily>h1{grid-column:1/-1;grid-row:1}
-  #daily>.sub{grid-column:1/-1;grid-row:2}
-  #daily>.tot{grid-column:1/-1;grid-row:6}
-  #daily>section.row:nth-of-type(1){grid-column:2;grid-row:3}
-  #daily>section.row:nth-of-type(2){grid-column:1;grid-row:3}
-  #daily>section.row:nth-of-type(3){grid-column:1;grid-row:4}
-  #daily>section.row:nth-of-type(4){grid-column:2;grid-row:4}
-  #daily>section.row:nth-of-type(5){grid-column:1;grid-row:5}
-  #daily>section.row:nth-of-type(6){grid-column:2;grid-row:5}
+  #daily{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}
+  #daily>h1,#daily>.sub,#daily>.tot{grid-column:1/-1}
+  #dcolL{grid-column:1;grid-row:3;display:grid;gap:14px;align-content:start}
+  #dcolR{grid-column:2;grid-row:3;display:grid;gap:14px;align-content:start}
+  #daily .dcol>.row{margin-bottom:0}
 }
-@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+ @media(max-width:999px){
+  #daily{display:flex;flex-direction:column}
+  #daily>.dcol{display:contents}
+  #daily>h1{order:1}#daily>.sub{order:2}
+  #dcolR>section.row:nth-of-type(1){order:3}
+  #dcolL>section.row:nth-of-type(1){order:4}
+  #dcolL>section.row:nth-of-type(2){order:5}
+  #dcolR>section.row:nth-of-type(2){order:6}
+  #dcolL>section.row:nth-of-type(3){order:7}
+  #dcolR>section.row:nth-of-type(3){order:8}
+  #daily>.tot{order:9}
+ }
+ @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
 .row,.tipc,.ex,.tot,.code-hero{animation:rise .45s ease both}
 .row,.tipc{transition:transform .18s ease,box-shadow .18s ease}
@@ -407,39 +415,42 @@ a.ki:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
 <button role="tab" data-tab="changelog" aria-selected="false">Changelog</button>
 </nav></header>
 <main>
-<div class="panel" id="daily" role="tabpanel">
-<h1>How to spend Dawnium</h1>
-<div class="sub">Daily Efficiency Guide</div>
-<section class="row" style="--c:var(--violet)">
-  <div><span class="tag">Attempts x2</span><h2>Daily Dungeon</h2><p>Maximize your attempts every day by buying the extra 2.</p></div>
-  <div class="big"><b>250</b><span>Total Dawnium</span></div>
-</section>
-<section class="row" style="--c:var(--gold)">
+<div class="panel" <div id="daily" class="panel">
+  <h1>How to spend Dawnium</h1>
+  <div class="sub">Daily Efficiency Guide</div>
+  <div class="dcol" id="dcolL">
+    <section class="row" style="--c:var(--gold)">
   <div><span class="tag">2 / 2 / 2 / 2</span><h2>Material Realms</h2><p>Clear all Material Realm attempts to gather more upgrade materials. <span class="note">This split is for F2P players.</span></p>
   <p class="anec"><strong>Healthy Dawnium supply?</strong> Try a 4/4/4/6 split instead. Right now we value Sand, so give it the largest share. If times are tough and you can't manage this consistently, fall back to 4/2/2/6.</p></div>
   <div class="big"><b>480</b><span>Total Dawnium</span></div>
 </section>
-<section class="row" style="--c:var(--green)">
+    <section class="row" style="--c:var(--green)">
   <div><span class="tag">Daily donations</span><h2>Guild Donations</h2><p>Support your guild and earn valuable rewards. <span class="note">F2P players are greatly encouraged to do the first 2 Dawnium donations.</span></p></div>
   <div class="big"><b>70</b><span>Total Dawnium</span></div>
 </section>
-<section class="row" style="--c:var(--red)">
+    <section class="row afk" style="--c:var(--gold)">
+  <div><span class="tag">Guild facility</span><h2>AFK Guild Facilities</h2><p>Ask guild members to chip in for the gold-tier AFK tools (150 Dawnium) to help the whole guild progress.</p></div>
+  <div class="big afkgold"><b>150</b><span>Total Dawnium</span></div>
+  <img class="afkimg span" src="images/afk-gold-forge.webp" alt="Gold tier AFK facility" width="663" height="459">
+</section>
+  </div>
+  <div class="dcol" id="dcolR">
+    <section class="row" style="--c:var(--violet)">
+  <div><span class="tag">Attempts x2</span><h2>Daily Dungeon</h2><p>Maximize your attempts every day by buying the extra 2.</p></div>
+  <div class="big"><b>250</b><span>Total Dawnium</span></div>
+</section>
+    <section class="row" style="--c:var(--red)">
   <div><span class="tag">Optional</span><h2>Arena PvP (competition)</h2><p>Three tickets are preferred to stay competitive.</p>
   <p class="anec"><strong>Tip:</strong> Buy 2-3 Arena tickets every day. You only need to spend 3 to complete the daily requirement, so there's no reason to spend more. This strategy works best for small spenders and F2P players. To reach this point, you may need to place lower than usual for one season so you can build up tickets.</p>
   <button type="button" class="clipbtn" data-clip="video/arena-tickets.mp4" data-poster="images/arena-video-poster.webp"><span aria-hidden="true">&#9654;</span> Example clip</button></div>
   <div class="big"><b>45</b><span>Total Dawnium (3 tickets)</span></div>
 </section>
-<section class="row afk" style="--c:var(--gold)">
-  <div><span class="tag">Guild facility</span><h2>AFK Guild Facilities</h2><p>Ask guild members to chip in for the gold-tier AFK tools (150 Dawnium) to help the whole guild progress.</p></div>
-  <div class="big afkgold"><b>150</b><span>Total Dawnium</span></div>
-  <img class="afkimg span" src="images/afk-gold-forge.webp" alt="Gold tier AFK facility" width="663" height="459">
-</section>
-
-<section class="row" style="--c:var(--blue)">
+    <section class="row" style="--c:var(--blue)">
   <div><span class="tag">200-300</span><h2>Vault</h2><p>Purchase valuable items and limited resources.</p></div>
   <div class="big"><b>200-300</b><span>Total Dawnium</span></div>
 </section>
-<section class="tot" style="--c:var(--violet)">
+  </div>
+  <section class="tot" style="--c:var(--violet)">
   <div class="l">Total daily</div><div class="n">1295</div><div class="l">Maximum, with the Vault at 300</div>
   <ul class="parts">
     <li style="--c:var(--violet)"><b>250</b>Daily Dungeon</li>
@@ -450,8 +461,7 @@ a.ki:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
     <li style="--c:var(--gold)"><b>150</b>AFK Guild Facilities</li>
   </ul>
 </section>
-</div>
-<div class="panel" id="events" role="tabpanel" hidden>
+</div>id="events" role="tabpanel" hidden>
 <h1>Events</h1>
 <div class="sub">Current, upcoming &amp; past</div>
 <!-- To add an event: copy an event card below and set its start and end dates (YYYY-MM-DD). -->
