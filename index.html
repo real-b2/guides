@@ -1108,7 +1108,7 @@ document.querySelector('nav.tabs').addEventListener('click',function(e){var b=e.
   function render(){
     var ru=document.documentElement.lang==='ru',t=ru?T.ru:T.en;
     var now=new Date();now.setHours(0,0,0,0);
-    var list=data().slice().sort(function(a,b){return a.posted<b.posted?-1:1});
+    var list=data().slice().sort(function(a,b){return a.posted<b.posted?1:-1});
     var active=null,past=[];
     list.forEach(function(c){
       var ex=c.expires?d(c.expires):null;
