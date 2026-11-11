@@ -1420,15 +1420,15 @@ document.querySelector('nav.tabs').addEventListener('click',function(e){var b=e.
   function tick(){
     var ru=document.documentElement.lang==='ru',now=new Date();
     document.querySelectorAll('[data-cd]').forEach(function(el){
-      var ms=new Date(el.dataset.cd+'T00:00:00')-now,dd,hh,mm;
+      var ms=new Date(el.dataset.cd+'T00:00:00')-now,dd,hh,mm,ss;
       if(ms<=0){el.textContent=ru?'\u041e\u0442\u043a\u0440\u044b\u0442\u043e':'Live';el.classList.add('live');return}
-      dd=Math.floor(ms/864e5);hh=Math.floor(ms%864e5/36e5);mm=Math.floor(ms%36e5/6e4);
-      el.textContent=ru?dd+'\u0434 '+hh+'\u0447 '+mm+'\u043c':dd+'d '+hh+'h '+mm+'m';
+      dd=Math.floor(ms/864e5);hh=Math.floor(ms%864e5/36e5);mm=Math.floor(ms%36e5/6e4);ss=Math.floor(ms%6e4/1e3);
+      el.textContent=ru?dd+'\u0434 '+hh+'\u0447 '+mm+'\u043c '+ss+'\u0441':dd+'d '+hh+'h '+mm+'m '+ss+'s';
       el.classList.remove('live');
     });
   }
   new MutationObserver(tick).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
-  setInterval(tick,15000);tick();
+  setInterval(tick,1000);tick();
 })();
 </script>
 </body>
